@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Appointment App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="doc1">Connect with Specialized Doctors Online for\nConvenient and Comprehensive Medical\nConsultations.</string>
+    <string name="doc2">Explore a Vest Array of Online Medical\nSpecialists, Offering Extensive Range of\nExpertise Tailored To Your Healthcare Needs.</string>
+</resources>

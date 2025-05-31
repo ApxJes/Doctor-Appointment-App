@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Home"
+        android:icon="@drawable/home_selector"/>
+
+    <item
+        android:title="Appointment"
+        android:icon="@drawable/appointment_selector"/>
+
+    <item
+        android:title="Location"
+        android:icon="@drawable/location_selector"/>
+
+    <item
+        android:title="Profile"
+        android:icon="@drawable/profile_selector"/>
+
+</menu>
