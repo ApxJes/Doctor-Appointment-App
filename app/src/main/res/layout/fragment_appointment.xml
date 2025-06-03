@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".appointment_features.presentation.ui.main_screen.HomeFragment">
+    tools:context=".appointment_features.presentation.ui.main_screen.AppointmentFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home Fragment"
+        android:text="Appointment Fragment"
         android:textColor="@color/black"/>
 
 </FrameLayout>

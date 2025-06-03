@@ -5,10 +5,9 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashScreenFragment">
 
-
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.appointmentapp.appointment_features.presentation.ui.SplashScreenFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.onBoarding.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
@@ -17,10 +16,13 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_singUpFragment"
+            app:destination="@id/singUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.appointmentapp.appointment_features.presentation.ui.HomeFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
@@ -29,8 +31,47 @@
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
         <action
-            android:id="@+id/action_viewPagerFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_viewPagerFragment_to_singUpFragment"
+            app:destination="@id/singUpFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/appointmentFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.AppointmentFragment"
+        android:label="fragment_appointment"
+        tools:layout="@layout/fragment_appointment" />
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/singUpFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.auth.SignUpFragment"
+        android:label="fragment_sing_up"
+        tools:layout="@layout/fragment_sing_up" >
+        <action
+            android:id="@+id/action_singUpFragment_to_accountSetUpFragment"
+            app:destination="@id/accountSetUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountSetUpFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.auth.AccountSetUpFragment"
+        android:label="fragment_account_set_up"
+        tools:layout="@layout/fragment_account_set_up" />
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.auth.ForgetPasswordFragment"
+        android:label="fragment_forget_password"
+        tools:layout="@layout/fragment_forget_password" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>

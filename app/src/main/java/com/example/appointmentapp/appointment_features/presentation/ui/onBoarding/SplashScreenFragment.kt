@@ -1,9 +1,10 @@
-package com.example.appointmentapp.appointment_features.presentation.ui
+package com.example.appointmentapp.appointment_features.presentation.ui.onBoarding
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,7 @@ class SplashScreenFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,21 +47,30 @@ class SplashScreenFragment : Fragment() {
                 .start()
         }
 
-        Handler().postDelayed(
-            {
-                if(onBoardingFinished()) {
-                    findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
+        Handler(Looper.getMainLooper()).postDelayed({
+            val isOnBoardingFinished = onBoardingFinished()
+            val isSignedUp = isSignUp()
+
+            if (!isOnBoardingFinished) {
+                findNavController().navigate(R.id.action_splashScreenFragment_to_viewPagerFragment)
+            } else {
+                if (!isSignedUp) {
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_singUpFragment)
                 } else {
-                    findNavController().navigate(R.id.action_splashScreenFragment_to_viewPagerFragment)
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
                 }
-            },
-            2000
-        )
+            }
+        }, 2000)
     }
 
     private fun onBoardingFinished(): Boolean {
-        val sharePref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-        return sharePref.getBoolean("isFinished", false)
+        val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("isFinished", false)
+    }
+
+    private fun isSignUp(): Boolean {
+        val sharedPref = requireActivity().getSharedPreferences("userSession", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("isSignedUp", false)
     }
 
     override fun onDestroyView() {
