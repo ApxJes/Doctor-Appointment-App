@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.example.appointmentapp.databinding.FragmentSingUpBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -37,6 +38,10 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {}
+        })
+
         binding.btnCreateAccount.setOnClickListener {
             val userName = binding.edtName.text.toString().trim()
             val email = binding.edtEmail.text.toString().trim()
@@ -52,7 +57,7 @@ class SignUpFragment : Fragment() {
                             val sharedPref = requireActivity().getSharedPreferences("userSession", Context.MODE_PRIVATE)
                             sharedPref.edit().putBoolean("isSignedUp", true).apply()
 
-                            findNavController().navigate(SignUpFragmentDirections.actionSingUpFragmentToAccountSetUpFragment())
+                            findNavController().navigate(SignUpFragmentDirections.actionSingUpFragmentToHomeFragment())
                         }
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
@@ -61,6 +66,10 @@ class SignUpFragment : Fragment() {
                     }
                 }
             }
+        }
+
+        binding.txvSignIn.setOnClickListener {
+            findNavController().navigate(SignUpFragmentDirections.actionSingUpFragmentToLoginFragment())
         }
     }
 

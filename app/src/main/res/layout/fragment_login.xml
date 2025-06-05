@@ -51,8 +51,8 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:color/transparent"
         android:hint="Email"
+        android:background="@drawable/auth_bg"
         android:padding="6dp"
         android:textColorHint="@color/gray"
         app:boxBackgroundMode="outline"
@@ -71,7 +71,7 @@
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:background="@drawable/auth_bg"
+            android:background="@android:color/transparent"
             android:paddingVertical="12dp"
             android:paddingStart="45dp"
             android:textColor="@color/gray" />
@@ -86,7 +86,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/auth_bg"
         android:hint="Password"
         android:padding="6dp"
         android:textColorHint="@color/gray"
@@ -104,10 +104,10 @@
         app:boxBackgroundMode="outline">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Password"
+            android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:background="@drawable/auth_bg"
+            android:background="@android:color/transparent"
             android:paddingVertical="12dp"
             android:paddingStart="45dp"
             android:textColor="@color/gray" />
@@ -117,7 +117,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="20dp"
@@ -145,7 +145,7 @@
     <LinearLayout
         android:id="@+id/btnLoginWithGoogle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="22dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="22dp"
@@ -179,7 +179,7 @@
         android:id="@+id/txvHaveAnAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="43dp"
         android:layout_marginTop="20dp"
         android:text="Don't have an account yet?"
         android:textColor="@color/gray"

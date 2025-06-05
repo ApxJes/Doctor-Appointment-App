@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_singUpFragment"
             app:destination="@id/singUpFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -54,9 +57,13 @@
         android:name="com.example.appointmentapp.appointment_features.presentation.ui.auth.SignUpFragment"
         android:label="fragment_sing_up"
         tools:layout="@layout/fragment_sing_up" >
+
         <action
-            android:id="@+id/action_singUpFragment_to_accountSetUpFragment"
-            app:destination="@id/accountSetUpFragment" />
+            android:id="@+id/action_singUpFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_singUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountSetUpFragment"
@@ -72,6 +79,13 @@
         android:id="@+id/loginFragment"
         android:name="com.example.appointmentapp.appointment_features.presentation.ui.auth.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_singUpFragment"
+            app:destination="@id/singUpFragment" />
+    </fragment>
 
 </navigation>

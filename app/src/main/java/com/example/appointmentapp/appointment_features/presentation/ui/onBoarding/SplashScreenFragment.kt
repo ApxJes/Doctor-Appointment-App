@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appointmentapp.R
 import com.example.appointmentapp.databinding.FragmentSplashScreenBinding
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("CustomSplashScreen")
@@ -49,15 +50,15 @@ class SplashScreenFragment : Fragment() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             val isOnBoardingFinished = onBoardingFinished()
-            val isSignedUp = isSignUp()
 
             if (!isOnBoardingFinished) {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_viewPagerFragment)
             } else {
-                if (!isSignedUp) {
-                    findNavController().navigate(R.id.action_splashScreenFragment_to_singUpFragment)
-                } else {
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                if (currentUser != null) {
                     findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
+                } else {
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
                 }
             }
         }, 2000)
@@ -66,11 +67,6 @@ class SplashScreenFragment : Fragment() {
     private fun onBoardingFinished(): Boolean {
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("isFinished", false)
-    }
-
-    private fun isSignUp(): Boolean {
-        val sharedPref = requireActivity().getSharedPreferences("userSession", Context.MODE_PRIVATE)
-        return sharedPref.getBoolean("isSignedUp", false)
     }
 
     override fun onDestroyView() {
