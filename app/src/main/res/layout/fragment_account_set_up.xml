@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".appointment_features.presentation.ui.auth.AccountSetUpFragment">
+    tools:context=".appointment_features.presentation.ui.main_screen.AccountSetUpFragment">
 
     <ImageButton
         android:id="@+id/btnBackSpace"
@@ -42,14 +42,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgProfile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToOutline="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/unknown_profile"
-            app:tint="@color/gray" />
+            android:src="@drawable/user_pf"/>
 
         <ImageView
             android:id="@+id/imgEdit"
@@ -64,8 +63,8 @@
             android:src="@drawable/edit" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/txvName"
+    <EditText
+        android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:layout_marginStart="20dp"
@@ -99,7 +98,7 @@
         app:boxCornerRadiusTopStart="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txvName"
+        app:layout_constraintTop_toBottomOf="@id/edtName"
         app:boxBackgroundMode="outline">
 
         <com.google.android.material.textfield.TextInputEditText

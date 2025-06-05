@@ -12,6 +12,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.example.appointmentapp.databinding.FragmentSingUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -51,11 +52,15 @@ class SignUpFragment : Fragment() {
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
                         auth.createUserWithEmailAndPassword(email, password).await()
+                        val user = auth.currentUser
+
+                        val profileUpdate = UserProfileChangeRequest.Builder()
+                            .setDisplayName(userName)
+                            .build()
+                        user?.updateProfile(profileUpdate)?.await()
+
                         withContext(Dispatchers.Main) {
                             Toast.makeText(requireContext(), "Account created successfully", Toast.LENGTH_SHORT).show()
-
-                            val sharedPref = requireActivity().getSharedPreferences("userSession", Context.MODE_PRIVATE)
-                            sharedPref.edit().putBoolean("isSignedUp", true).apply()
 
                             findNavController().navigate(SignUpFragmentDirections.actionSingUpFragmentToHomeFragment())
                         }

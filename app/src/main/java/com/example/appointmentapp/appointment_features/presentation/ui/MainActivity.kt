@@ -48,31 +48,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
-    override fun onBackPressed() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        val currentDest = navController.currentDestination?.id
-
-        if (currentDest in setOf(
-                R.id.appointmentFragment,
-                R.id.locationFragment,
-                R.id.profileFragment
-            )
-        ) {
-            navController.navigate(R.id.homeFragment)
-            binding.bottomNav.selectedItemId = R.id.homeFragment
-        }
-        else if (currentDest == R.id.homeFragment) {
-            finish()
-        }
-        else {
-            super.onBackPressedDispatcher.onBackPressed()
-        }
-    }
-
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

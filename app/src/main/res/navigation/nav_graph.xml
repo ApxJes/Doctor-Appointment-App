@@ -51,7 +51,14 @@
         android:id="@+id/profileFragment"
         android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_accountSetUpFragment"
+            app:destination="@id/accountSetUpFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/singUpFragment"
         android:name="com.example.appointmentapp.appointment_features.presentation.ui.auth.SignUpFragment"
@@ -67,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountSetUpFragment"
-        android:name="com.example.appointmentapp.appointment_features.presentation.ui.auth.AccountSetUpFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.AccountSetUpFragment"
         android:label="fragment_account_set_up"
         tools:layout="@layout/fragment_account_set_up" />
     <fragment
