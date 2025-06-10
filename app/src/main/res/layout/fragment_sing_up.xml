@@ -45,38 +45,33 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/NameInputLayout"
-        android:layout_width="match_parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/auth_bg"
-        android:padding="6dp"
+        android:layout_width="0dp"
+        android:hint="User Name"
         android:textColorHint="@color/gray"
-        app:boxCornerRadiusBottomEnd="12dp"
-        app:boxCornerRadiusBottomStart="12dp"
-        app:boxCornerRadiusTopEnd="12dp"
-        app:boxCornerRadiusTopStart="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txvToHelpYou"
+        app:layout_constraintEnd_toEndOf="parent"
         app:startIconDrawable="@drawable/outline_account_circle_24"
-        app:boxBackgroundMode="outline"
-        android:hint=""
         app:startIconTint="@color/gray">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
             android:paddingVertical="12dp"
             android:paddingStart="45dp"
-            android:hint="Your Name"
             android:textColor="@color/gray" />
-
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/EmailInputLayout"
@@ -86,29 +81,24 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/auth_bg"
         app:boxBackgroundMode="outline"
-        android:padding="6dp"
+        android:hint="Email"
         android:textColorHint="@color/gray"
-        app:boxCornerRadiusBottomEnd="12dp"
-        app:boxCornerRadiusBottomStart="12dp"
-        app:boxCornerRadiusTopEnd="12dp"
-        app:boxCornerRadiusTopStart="12dp"
-        app:hintTextColor="@color/gray"
+        app:hintTextColor="@color/black"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/NameInputLayout"
         app:startIconDrawable="@drawable/email"
-        app:startIconTint="@color/gray">
+        app:startIconTint="@color/gray"
+        app:boxStrokeColor="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
             android:paddingVertical="12dp"
             android:paddingStart="45dp"
-            android:hint="Email"
             android:textColor="@color/gray" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -121,30 +111,26 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/auth_bg"
-        android:padding="6dp"
         app:boxBackgroundMode="outline"
+        android:hint="Password"
         android:textColorHint="@color/gray"
-        app:boxCornerRadiusBottomEnd="12dp"
-        app:boxCornerRadiusBottomStart="12dp"
-        app:boxCornerRadiusTopEnd="12dp"
-        app:boxCornerRadiusTopStart="12dp"
+        app:hintTextColor="@color/black"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/EmailInputLayout"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/gray"
         app:startIconDrawable="@drawable/password"
-        app:startIconTint="@color/gray">
+        app:startIconTint="@color/gray"
+        app:boxStrokeColor="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
             android:paddingVertical="12dp"
             android:paddingStart="45dp"
-            android:hint="Password"
             android:textColor="@color/gray" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -152,7 +138,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCreateAccount"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="20dp"
@@ -180,7 +166,7 @@
     <LinearLayout
         android:id="@+id/btnLoginWithGoogle"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"

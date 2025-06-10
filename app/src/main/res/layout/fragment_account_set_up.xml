@@ -63,49 +63,57 @@
             android:src="@drawable/edit" />
     </FrameLayout>
 
-    <EditText
-        android:id="@+id/edtName"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/auth_bg"
-        android:fontFamily="@font/supreme_regular"
-        android:padding="12dp"
-        android:text="Name"
-        android:gravity="center_vertical"
-        android:textColor="@color/gray"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imvUploadProfile" />
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/NicknameInputLayout"
-        android:layout_width="match_parent"
+        android:id="@+id/NameInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:color/transparent"
+        android:layout_width="0dp"
+        android:hint="User Name"
+        android:textColorHint="@color/gray"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imvUploadProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:startIconDrawable="@drawable/outline_account_circle_24"
+        app:startIconTint="@color/gray">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="12dp"
+            android:paddingStart="45dp"
+            android:textColor="@color/gray" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/NicknameInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="0dp"
         android:hint="Nickname"
         android:textColorHint="@color/gray"
-        app:boxCornerRadiusBottomEnd="12dp"
-        app:boxCornerRadiusBottomStart="12dp"
-        app:boxCornerRadiusTopEnd="12dp"
-        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtName"
+        app:layout_constraintTop_toBottomOf="@id/NameInputLayout"
         app:boxBackgroundMode="outline">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtNickName"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:background="@drawable/auth_bg"
+            android:layout_height="wrap_content"
             android:textColor="@color/gray"
             android:paddingVertical="14dp"/>
 
@@ -114,7 +122,7 @@
     <TextView
         android:id="@+id/txvEmail"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -131,18 +139,18 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/BirthInputLayout"
-        android:layout_width="match_parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:color/transparent"
-        android:hint="Date of Birth"
+        android:layout_width="0dp"
+        android:hint="Date Of Birth"
         android:textColorHint="@color/gray"
-        app:boxCornerRadiusBottomEnd="12dp"
-        app:boxCornerRadiusBottomStart="12dp"
-        app:boxCornerRadiusTopEnd="12dp"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
         app:boxCornerRadiusTopStart="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -153,8 +161,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtBirthDate"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:background="@drawable/auth_bg"
+            android:layout_height="wrap_content"
             android:paddingVertical="12dp"
             android:paddingStart="45dp"
             android:textColor="@color/gray" />
@@ -163,27 +170,30 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/genderInputLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
+        android:hint="Gender"
+        android:textColorHint="@color/gray"
+        app:hintTextColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/BirthInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:boxStrokeColor="@color/black"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:textColor="@color/gray"
-            android:background="@drawable/auth_bg"
             android:inputType="none"
-            android:text="Gender" />
-
+            android:focusable="false"
+            android:clickable="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
