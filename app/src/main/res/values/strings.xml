@@ -5,6 +5,7 @@
     <string name="doc1">Connect with Specialized Doctors Online for\nConvenient and Comprehensive Medical\nConsultations.</string>
     <string name="doc2">Explore a Vest Array of Online Medical\nSpecialists, Offering Extensive Range of\nExpertise Tailored To Your Healthcare Needs.</string>
     <string name="congratulation_message">Your account is ready to use.You will\nbe redirected to the home page if click "Ok"</string>
+    <string name="general_hospital_yangon">Yangon General Hospital (YGH) is a large public hospital in Yangon, Myanmar. It\'s a 2,000-bed facility with a wide range of medical and surgical services, including specialist departments and a trauma center. YGH is also a major teaching hospital for several medical institutions in the country</string>
     <string name="sign_in"><u>Sign in</u></string>
     <string name="sign_up"><u>Sign up</u></string>
     <string-array name="gender">
