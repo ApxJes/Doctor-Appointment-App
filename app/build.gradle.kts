@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.google.map)
+    implementation(libs.map.place)
     implementation(libs.round.image)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)

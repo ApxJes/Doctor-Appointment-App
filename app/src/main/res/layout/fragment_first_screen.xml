@@ -11,13 +11,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardCornerRadius="24dp"
-        android:layout_marginTop="45dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintDimensionRatio="4:4.3">
+        app:layout_constraintDimensionRatio="4:5">
 
         <ImageView
             android:id="@+id/onboardingImage"

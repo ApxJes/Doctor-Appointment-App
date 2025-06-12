@@ -7,14 +7,14 @@
         android:icon="@drawable/home_selector"/>
 
     <item
-        android:id="@+id/appointmentFragment"
-        android:title="Appointment"
-        android:icon="@drawable/appointment_selector"/>
-
-    <item
         android:id="@+id/locationFragment"
         android:title="Location"
         android:icon="@drawable/location_selector"/>
+
+    <item
+        android:id="@+id/appointmentFragment"
+        android:title="Appointment"
+        android:icon="@drawable/appointment_selector"/>
 
     <item
         android:id="@+id/profileFragment"
