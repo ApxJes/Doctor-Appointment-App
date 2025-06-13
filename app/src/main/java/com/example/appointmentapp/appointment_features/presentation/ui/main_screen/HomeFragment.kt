@@ -16,6 +16,7 @@ import com.example.appointmentapp.appointment_features.presentation.viewModel.Lo
 import com.example.appointmentapp.databinding.FragmentHomeBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
@@ -79,6 +80,12 @@ class HomeFragment : Fragment() {
             fetchUserLocation()
         } else {
             locationViewModel.updateLocation("Permission denied", "")
+            Snackbar.make(
+                binding.root,
+                "We couldn’t access your location. Please allow location permission to get nearby suggestions.",
+                Snackbar.LENGTH_LONG
+            ).show()
+
         }
     }
 
