@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.appointmentapp.appointment_features.presentation.viewModel.LocationViewModel
 import com.example.appointmentapp.databinding.FragmentHomeBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -49,6 +50,10 @@ class HomeFragment : Fragment() {
         }
 
         checkLocationPermissionAndFetch()
+
+        binding.imvDoctorImageBanner.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDoctorListFragment())
+        }
     }
 
     private fun checkLocationPermissionAndFetch() {

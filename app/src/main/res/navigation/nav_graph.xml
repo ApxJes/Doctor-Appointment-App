@@ -27,7 +27,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_doctorListFragment"
+            app:destination="@id/doctorListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.example.appointmentapp.appointment_features.presentation.ui.onBoarding.ViewPagerFragment"
@@ -94,5 +98,10 @@
             android:id="@+id/action_loginFragment_to_singUpFragment"
             app:destination="@id/singUpFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/doctorListFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.DoctorListFragment"
+        android:label="fragment_doctor_list"
+        tools:layout="@layout/fragment_doctor_list" />
 
 </navigation>

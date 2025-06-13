@@ -1,10 +1,9 @@
 package com.example.appointmentapp.appointment_features.data.di
 
-import com.example.appointmentapp.appointment_features.data.repository.HospitalRepositoryImpl
-import com.example.appointmentapp.appointment_features.domain.repository.HospitalRepository
+import com.example.appointmentapp.appointment_features.data.repository.RepositoryImplementation
+import com.example.appointmentapp.appointment_features.domain.repository.DomainRepository
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -16,6 +15,6 @@ abstract class RepoModule {
     @Binds
     @Singleton
     abstract fun providesRepoImpl(
-        hospitalRepositoryImpl: HospitalRepositoryImpl
-    ): HospitalRepository
+        hospitalRepositoryImpl: RepositoryImplementation
+    ): DomainRepository
 }
