@@ -51,11 +51,20 @@ class DoctorsAdapter: RecyclerView.Adapter<DoctorsAdapter.DoctorsViewHolder>() {
             txvSpecialized.text = doctors.specialized
             txvRating.text = doctors.rating
             txvHospitalAddress.text = doctors.hospital
+
+            root.setOnClickListener {
+                onClick?.invoke(doctors)
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
+    }
+
+    private var onClick: ((DoctorsVo) -> Unit)? = null
+    fun setOnClickListener(listener: (DoctorsVo) -> Unit) {
+        onClick = listener
     }
 
     inner class DoctorsViewHolder(val binding: DoctorsLayoutBinding): RecyclerView.ViewHolder(binding.root)

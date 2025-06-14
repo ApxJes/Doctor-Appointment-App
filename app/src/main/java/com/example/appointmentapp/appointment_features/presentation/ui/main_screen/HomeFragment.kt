@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
 
         checkLocationPermissionAndFetch()
 
-        binding.imvDoctorImageBanner.setOnClickListener {
+        binding.txvSeeAll.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDoctorListFragment())
         }
     }

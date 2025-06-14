@@ -26,4 +26,8 @@ class RepositoryImplementation @Inject constructor(
     }.catch {
         emit(emptyList())
     }
+
+    override suspend fun getDoctorDetails(id: String): Flow<DoctorsDto> = flow {
+        emit(doctorApi.getDoctorDetails(id))
+    }
 }

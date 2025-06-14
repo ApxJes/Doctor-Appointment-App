@@ -102,6 +102,19 @@
         android:id="@+id/doctorListFragment"
         android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.DoctorListFragment"
         android:label="fragment_doctor_list"
-        tools:layout="@layout/fragment_doctor_list" />
+        tools:layout="@layout/fragment_doctor_list" >
+        <action
+            android:id="@+id/action_doctorListFragment_to_doctorDetailsFragment"
+            app:destination="@id/doctorDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorDetailsFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.DoctorDetailsFragment"
+        android:label="fragment_doctor_details"
+        tools:layout="@layout/fragment_doctor_details">
+        <argument
+            android:name="doctors"
+            app:argType="com.example.appointmentapp.appointment_features.domain.model.DoctorsVo" />
+    </fragment>
 
 </navigation>

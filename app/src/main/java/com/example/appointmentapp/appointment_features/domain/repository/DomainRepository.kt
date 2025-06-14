@@ -9,4 +9,6 @@ interface DomainRepository {
     suspend fun getHospitals(query: String): Flow<List<HospitalDto>>
 
     suspend fun getDoctors(): Flow<List<DoctorsDto>>
+
+    suspend fun getDoctorDetails(id: String): Flow<DoctorsDto>
 }

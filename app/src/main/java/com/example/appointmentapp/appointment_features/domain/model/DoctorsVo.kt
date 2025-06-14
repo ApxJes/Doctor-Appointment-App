@@ -1,6 +1,9 @@
 package com.example.appointmentapp.appointment_features.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class DoctorsVo(
     val about: String?,
     val experience: String?,
@@ -12,4 +15,4 @@ data class DoctorsVo(
     val rating: String?,
     val specialized: String?,
     val workTime: String?
-)
+): Parcelable
