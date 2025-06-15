@@ -16,7 +16,7 @@
         android:src="@drawable/back_press"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/gray" />
+        app:tint="@color/textGray2" />
 
     <TextView
         android:id="@+id/textView2"
@@ -26,7 +26,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/space_grotesk_bold"
         android:text="Fill Your Profile"
-        android:textColor="@color/gray"
+        android:textColor="@color/textGray2"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/btnBackSpace"
         app:layout_constraintStart_toEndOf="@id/btnBackSpace"
@@ -63,71 +63,86 @@
             android:src="@drawable/edit" />
     </FrameLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:id="@+id/NameInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:layout_width="0dp"
-        android:hint="User Name"
-        android:textColorHint="@color/gray"
-        app:boxBackgroundMode="outline"
-        app:boxStrokeColor="@color/black"
-        app:hintTextColor="@color/black"
+        android:background="@drawable/login_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imvUploadProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:startIconDrawable="@drawable/outline_account_circle_24"
-        app:startIconTint="@color/gray">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <ImageView
+            android:id="@+id/imgUserIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/user1"
+            app:tint="@color/gray" />
+
+        <EditText
             android:id="@+id/edtName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/inter"
+            android:hint="User Name"
+            android:inputType="textPersonName"
             android:paddingVertical="12dp"
-            android:paddingStart="45dp"
-            android:textColor="@color/gray" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColor="@color/gray"
+            android:textColorHint="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+
+    <LinearLayout
         android:id="@+id/NicknameInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:layout_width="0dp"
-        android:hint="Nickname"
-        android:textColorHint="@color/gray"
-        app:boxStrokeColor="@color/black"
-        app:hintTextColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/login_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/NameInputLayout"
-        app:boxBackgroundMode="outline">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/edtNickName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/inter"
             android:textColor="@color/gray"
-            android:paddingVertical="14dp"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="Nickname"
+            android:inputType="textPersonName"
+            android:paddingVertical="12dp"
+            android:paddingStart="12dp"
+            android:textColorHint="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txvEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/auth_bg"
-        android:fontFamily="@font/worksans_regular"
+        android:background="@drawable/login_bg"
+        android:fontFamily="@font/inter"
         android:padding="12dp"
         android:text="example@.gmail.com"
         android:textColor="@color/gray"
@@ -137,75 +152,87 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/NicknameInputLayout" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:id="@+id/BirthInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/login_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txvEmail"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imgBirthIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/date_of_birth"
+            app:tint="@color/gray" />
+
+        <TextView
+            android:id="@+id/txvBirthDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/inter"
+            android:text="Date Of Birth"
+            android:paddingVertical="12dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/genderInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
-        android:layout_width="0dp"
-        android:hint="Date Of Birth"
         android:textColorHint="@color/gray"
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="@color/black"
         app:hintTextColor="@color/black"
-        app:boxCornerRadiusTopStart="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txvEmail"
-        app:startIconTint="@color/gray"
-        app:startIconDrawable="@drawable/date_of_birth">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtBirthDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="12dp"
-            android:paddingStart="45dp"
-            android:textColor="@color/gray" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/genderInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="8dp"
-        android:hint="Gender"
-        android:textColorHint="@color/gray"
-        app:hintTextColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/BirthInputLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:boxBackgroundMode="outline"
-        app:boxBackgroundColor="@android:color/transparent"
-        app:boxStrokeColor="@color/black"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        app:startIconTint="@color/gray">
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
+            android:id="@+id/autoCompleteGender"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray"
+            android:layout_height="45dp"
+            android:background="@drawable/login_bg"
+            android:clickable="true"
             android:inputType="none"
             android:focusable="false"
-            android:clickable="true" />
+            android:dropDownVerticalOffset="8dp"
+            android:paddingVertical="12dp"
+            android:paddingStart="45dp"
+            android:hint="Gendar"
+            android:textColor="@color/gray" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/on_boarding_button"
         android:text="Save"
         android:textAllCaps="false"
+        android:fontFamily="@font/inter"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

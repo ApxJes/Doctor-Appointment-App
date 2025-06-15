@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="135dp"
-    android:elevation="4dp"
+    android:elevation="8dp"
     app:cardCornerRadius="12dp"
-    app:cardBackgroundColor="#E0E0E0"
+    app:cardBackgroundColor="@color/white"
     android:layout_marginBottom="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,10 +59,10 @@
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@font/worksans_bold"
+                    android:fontFamily="@font/inter_bold"
                     android:maxLines="1"
                     android:text="Doctor's Name"
-                    android:textColor="@color/black"
+                    android:textColor="#1F2A37"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -80,11 +80,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:ellipsize="end"
-                android:fontFamily="@font/worksans_regular"
+                android:fontFamily="@font/inter"
                 android:gravity="top"
                 android:maxLines="1"
                 android:text="Cardiologist"
-                android:textColor="@color/black"
+                android:textColor="#4B5563"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -104,12 +104,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/worksans_regular"
+                    android:fontFamily="@font/inter"
                     android:gravity="top"
                     android:maxLines="1"
                     android:minLines="1"
                     android:text="General Hospital Yangon"
-                    android:textColor="@color/black" />
+                    android:textColor="#4B5563" />
             </LinearLayout>
 
             <LinearLayout
@@ -129,11 +129,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/worksans_regular"
+                    android:fontFamily="@font/inter"
                     android:gravity="top"
                     android:maxLines="1"
                     android:text="4.0"
-                    android:textColor="@color/black" />
+                    android:textColor="#4B5563" />
 
 
             </LinearLayout>

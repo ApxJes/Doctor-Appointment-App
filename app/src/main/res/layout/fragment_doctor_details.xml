@@ -15,16 +15,17 @@
         android:background="@color/white"
         android:src="@drawable/back_press"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#374151" />
 
     <TextView
         android:id="@+id/txvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/worksans_bold"
+        android:fontFamily="@font/inter_bold"
         android:text="Doctor Details"
-        android:textColor="@color/black"
+        android:textColor="#374151"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +39,8 @@
         android:layout_marginEnd="20dp"
         android:src="@drawable/favorite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#374151" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -49,7 +51,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:elevation="4dp"
-        app:cardBackgroundColor="#E0E0E0"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,9 +107,10 @@
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:fontFamily="@font/worksans_bold"
+                        android:fontFamily="@font/inter_bold"
                         android:maxLines="1"
-                        android:textColor="@color/black"
+                        android:text="Doctor's Name"
+                        android:textColor="#1F2A37"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -118,10 +121,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/worksans_regular"
+                    android:fontFamily="@font/inter"
                     android:gravity="top"
                     android:maxLines="1"
-                    android:textColor="@color/black"
+                    android:text="Cardiologist"
+                    android:textColor="#4B5563"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -141,11 +145,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/worksans_regular"
+                        android:fontFamily="@font/inter"
                         android:gravity="top"
                         android:maxLines="1"
                         android:minLines="1"
-                        android:textColor="@color/black" />
+                        android:text="General Hospital Yangon"
+                        android:textColor="#4B5563" />
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -171,13 +177,13 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_gravity="center"
                 android:background="@drawable/icon_bg"
-                android:padding="8dp"
+                android:padding="6dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/patients" />
+                android:src="@drawable/patient" />
 
             <TextView
                 android:id="@+id/txvPatientsCount"
@@ -192,9 +198,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/worksans_regular"
+                android:fontFamily="@font/inter_bold"
                 android:text="Patients"
-                android:textColor="@color/black" />
+                android:textSize="14sp"
+                android:textColor="#4B5563" />
 
         </LinearLayout>
 
@@ -205,11 +212,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_gravity="center"
                 android:background="@drawable/icon_bg"
-                android:padding="8dp"
+                android:padding="6dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/experience" />
 
@@ -226,9 +233,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/worksans_regular"
+                android:fontFamily="@font/inter_bold"
                 android:text="Experience"
-                android:textColor="@color/black" />
+                android:textSize="14sp"
+                android:textColor="#4B5563" />
 
         </LinearLayout>
 
@@ -239,11 +247,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_gravity="center"
                 android:background="@drawable/icon_bg"
-                android:padding="8dp"
+                android:padding="18dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/rate1" />
 
@@ -260,9 +268,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/worksans_regular"
+                android:fontFamily="@font/inter_bold"
                 android:text="Rating"
-                android:textColor="@color/black" />
+                android:textSize="14sp"
+                android:textColor="#4B5563" />
 
         </LinearLayout>
     </LinearLayout>
@@ -273,10 +282,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="14dp"
-        android:fontFamily="@font/switzer_bold"
+        android:fontFamily="@font/inter_bold"
         android:text="About Me"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColor="#1F2A37"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ly" />
 
@@ -288,10 +297,10 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
         android:ellipsize="end"
-        android:fontFamily="@font/supreme_regular"
+        android:fontFamily="@font/inter"
         android:maxLines="5"
         android:minLines="3"
-        android:textColor="@color/black"
+        android:textColor="#6B7280"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -303,10 +312,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="14dp"
-        android:fontFamily="@font/switzer_bold"
+        android:fontFamily="@font/inter_bold"
         android:text="Working Time"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColor="#1F2A37"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txvAboutMe" />
 
@@ -318,11 +327,11 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
         android:ellipsize="end"
-        android:fontFamily="@font/supreme_regular"
+        android:fontFamily="@font/inter"
         android:maxLines="2"
         android:minLines="1"
         android:text="Monday - Saturday, 10 Am to 4Pm"
-        android:textColor="@color/black"
+        android:textColor="#6B7280"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -331,7 +340,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnBookAppointment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"

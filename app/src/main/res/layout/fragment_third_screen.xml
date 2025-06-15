@@ -6,38 +6,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".appointment_features.presentation.ui.onBoarding.ThirdScreen">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/imageCard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <ImageView
+        android:id="@+id/onboardingImage"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/top_rounded_bg"
+        android:scaleType="fitXY"
+        android:src="@drawable/doctor3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintDimensionRatio="4:5">
-
-        <ImageView
-            android:id="@+id/onboardingImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/doctor3"
-            android:background="@drawable/top_rounded_bg" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/switzer_bold"
+        android:fontFamily="@font/inter_bold"
         android:text="Meet doctors Online"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        app:layout_constraintTop_toBottomOf="@id/imageCard"
+        android:textColor="#374151"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/onboardingImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -50,7 +40,7 @@
         android:padding="16dp"
         android:text="@string/doc2"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="#6B7280"
         app:layout_constraintTop_toBottomOf="@id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -58,7 +48,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnFinish"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"

@@ -75,7 +75,7 @@ class AccountSetUpFragment : Fragment() {
 
         val language = resources.getStringArray(R.array.gender)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_items, language)
-        binding.autoCompleteTextView.setAdapter(arrayAdapter)
+        binding.autoCompleteGender.setAdapter(arrayAdapter)
     }
 
     override fun onDestroyView() {
