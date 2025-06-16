@@ -51,6 +51,12 @@ class DoctorDetailsFragment : Fragment() {
         binding.btnBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
+
+        binding.btnBookAppointment.setOnClickListener {
+            val doctor = args.doctors
+            val action = DoctorDetailsFragmentDirections.actionDoctorDetailsFragmentToBookAppointmentFragment(doctor)
+            findNavController().navigate(action)
+        }
     }
 
     private fun getProductDetails() {

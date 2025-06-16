@@ -4,6 +4,7 @@ import com.example.appointmentapp.appointment_features.data.api_service.DoctorAp
 import com.example.appointmentapp.appointment_features.data.api_service.MapApiService
 import com.example.appointmentapp.appointment_features.data.remote.dto.DoctorsDto
 import com.example.appointmentapp.appointment_features.data.remote.dto.HospitalDto
+import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
 import com.example.appointmentapp.appointment_features.domain.repository.DomainRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 class RepositoryImplementation @Inject constructor(
     private val api: MapApiService,
-    private val doctorApi: DoctorApiService
+    private val doctorApi: DoctorApiService,
 ): DomainRepository {
 
     override suspend fun getHospitals(query: String): Flow<List<HospitalDto>> = flow {

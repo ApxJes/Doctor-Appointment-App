@@ -45,6 +45,8 @@ class ViewPagerFragment : Fragment() {
         )
 
         binding.viewPager.adapter = adapter
+        val indicator = binding.dotsIndicator
+        indicator.attachTo(binding.viewPager)
     }
 
     override fun onDestroyView() {

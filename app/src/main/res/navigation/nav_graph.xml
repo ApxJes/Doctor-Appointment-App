@@ -115,6 +115,19 @@
         <argument
             android:name="doctors"
             app:argType="com.example.appointmentapp.appointment_features.domain.model.DoctorsVo" />
+        <action
+            android:id="@+id/action_doctorDetailsFragment_to_bookAppointmentFragment"
+            app:destination="@id/bookAppointmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookAppointmentFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.BookAppointmentFragment"
+        android:label="fragment_book_appointment"
+        tools:layout="@layout/fragment_book_appointment" >
+
+        <argument
+            android:name="doctor"
+            app:argType="com.example.appointmentapp.appointment_features.domain.model.DoctorsVo" />
     </fragment>
 
 </navigation>

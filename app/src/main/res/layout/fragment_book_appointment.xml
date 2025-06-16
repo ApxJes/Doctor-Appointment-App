@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".appointment_features.presentation.ui.main_screen.BookAppointmentFragment">
+
+    <ImageView
+        android:id="@+id/btnBackPress"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/white"
+        android:src="@drawable/back_press"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#374151" />
+
+    <TextView
+        android:id="@+id/txvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Book Appointment"
+        android:textColor="#374151"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txvDateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Select Date"
+        android:textColor="#374151"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBackPress" />
+
+    <ImageView
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/datepicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txvDateTitle" />
+
+    <TextView
+        android:id="@+id/txvTimeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Select Time"
+        android:textColor="#374151"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/datePicker" />
+
+    <LinearLayout
+        android:id="@+id/ly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txvTimeTitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn9Am"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="09:00 AM"
+                android:textColor="#6B7280" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn930Am"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="09:30 AM"
+                android:textColor="#6B7280" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn10Am"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="10:00 AM"
+                android:textColor="#6B7280" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn1030Am"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="10:30 AM"
+                android:textColor="#6B7280" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn11Am"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="11:00 AM"
+                android:textColor="#6B7280" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn1130Am"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="11:30 AM"
+                android:textColor="#6B7280" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn3Pm"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="3:00 PM"
+                android:textColor="#6B7280" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn330Pm"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="03:30 PM"
+                android:textColor="#6B7280" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn4Pm"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="04:00 PM"
+                android:textColor="#6B7280" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn430Pm"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="04:30 PM"
+                android:textColor="#6B7280" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn5Pm"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="05:00 PM"
+                android:textColor="#6B7280" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn530Pm"
+                android:layout_width="105dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/auth_bg"
+                android:fontFamily="@font/inter_bold"
+                android:text="05:30 PM"
+                android:textColor="#6B7280" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/on_boarding_button"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ly" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSelectedDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="131dp"
+                android:layout_height="131dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_success" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_bold"
+                android:text="Congratulations!"
+                android:textColor="#1C2A3A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txvSelectedDateResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="3"
+                android:minLines="2"
+                android:padding="16dp"
+                android:fontFamily="@font/inter"
+                android:textColor="#6B7280"
+                android:textSize="14sp" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDone"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/on_boarding_button"
+                android:text="Done"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ data class DoctorsDto(
     @SerializedName("specialized")
     val specialized: String?,
     @SerializedName("work_time")
-    val workTime: String?
+    val workTime: String?,
 ) {
     fun toDoctorsVo(): DoctorsVo {
         return DoctorsVo (
@@ -37,7 +37,7 @@ data class DoctorsDto(
             picture = picture,
             rating = rating,
             specialized = specialized,
-            workTime = workTime
+            workTime = workTime,
         )
     }
 }

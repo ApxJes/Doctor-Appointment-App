@@ -14,5 +14,5 @@ data class DoctorsVo(
     val picture: String?,
     val rating: String?,
     val specialized: String?,
-    val workTime: String?
+    val workTime: String?,
 ): Parcelable
