@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.data.local.AppointmentEntity
@@ -87,6 +88,7 @@ class BookAppointmentFragment : Fragment() {
 
         binding.btnDone.setOnClickListener {
             binding.cardSelectedDate.visibility = View.GONE
+            findNavController().navigate(BookAppointmentFragmentDirections.actionBookAppointmentFragmentToAppointmentFragment())
         }
 
         val timeButtons = listOf(

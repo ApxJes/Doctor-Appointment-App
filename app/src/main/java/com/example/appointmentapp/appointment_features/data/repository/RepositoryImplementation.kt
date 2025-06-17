@@ -38,6 +38,10 @@ class RepositoryImplementation @Inject constructor(
         return dao.insertAppointment(appointment)
     }
 
+    override suspend fun deleteAppointment(appointment: AppointmentEntity) {
+        return dao.deleteAppointment(appointment)
+    }
+
     override fun getAllAppointments(): Flow<List<AppointmentEntity>> {
         return dao.getAllAppointments()
     }

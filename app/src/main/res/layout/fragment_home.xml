@@ -51,8 +51,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ly2"
-        android:layout_width="match_parent"
+            android:id="@+id/edtSerach"
+            android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
@@ -70,7 +70,6 @@
                 app:tint="#9CA3AF" />
 
             <EditText
-                android:id="@+id/edtSearchDoctor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -95,7 +94,7 @@
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ly2">
+            app:layout_constraintTop_toBottomOf="@id/edtSerach">
 
             <ImageView
                 android:id="@+id/imvDoctorImageBanner"

@@ -26,4 +26,10 @@ class AppointmentViewModel @Inject constructor(
             repository.insertAppointment(appointment)
         }
     }
+
+    fun deleteAppointment(appointment: AppointmentEntity) {
+        viewModelScope.launch {
+            repository.deleteAppointment(appointment)
+        }
+    }
 }

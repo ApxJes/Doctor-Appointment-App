@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
 
         checkLocationPermissionAndFetch()
 
-        binding.txvSeeAll.setOnClickListener {
+        binding.edtSerach.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDoctorListFragment())
         }
     }

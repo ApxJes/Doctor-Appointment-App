@@ -15,6 +15,8 @@ interface DomainRepository {
 
     suspend fun insertAppointment(appointment: AppointmentEntity)
 
+    suspend fun deleteAppointment(appointment: AppointmentEntity)
+
     fun getAllAppointments(): Flow<List<AppointmentEntity>>
 
 }

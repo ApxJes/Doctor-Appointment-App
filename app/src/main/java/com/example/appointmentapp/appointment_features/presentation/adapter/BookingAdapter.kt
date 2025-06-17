@@ -9,7 +9,10 @@ import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.data.local.AppointmentEntity
 import com.example.appointmentapp.databinding.BookingBinding
 
-class BookingAdapter : RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() {
+class BookingAdapter(
+    private val onCancelClick: (AppointmentEntity) -> Unit,
+    private val onRescheduleClick: (AppointmentEntity) -> Unit
+) : RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() {
 
     private val bookingList = mutableListOf<AppointmentEntity>()
 
@@ -45,9 +48,11 @@ class BookingAdapter : RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() 
                 .into(imvDoctor)
 
             btnCancel.setOnClickListener {
+                onCancelClick(appointment)
             }
 
             btnReSchedule.setOnClickListener {
+                onRescheduleClick(appointment)
             }
         }
     }
