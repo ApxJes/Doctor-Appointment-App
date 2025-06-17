@@ -10,8 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.appointmentapp.R
+import com.example.appointmentapp.appointment_features.data.local.AppointmentEntity
+import com.example.appointmentapp.appointment_features.presentation.viewModel.AppointmentViewModel
 import com.example.appointmentapp.databinding.FragmentBookAppointmentBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +31,7 @@ class BookAppointmentFragment : Fragment() {
     private var selectedTime: String? = null
     private var selectedButton: AppCompatButton? = null
     private val args: BookAppointmentFragmentArgs by navArgs()
+    private val appointmentViewModel: AppointmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,6 +69,18 @@ class BookAppointmentFragment : Fragment() {
                     val doctorName = args.doctor.name
                     binding.txvSelectedDateResult.text = "Your Appointment with $doctorName is confirm for $selectedDate at $selectedTime"
                     binding.cardSelectedDate.visibility = View.VISIBLE
+
+                    val appointment = AppointmentEntity (
+                        doctorId = args.doctor.id ?: "0",
+                        doctorName = args.doctor.name ?: "Unknown",
+                        specialization = args.doctor.specialized ?: "Unknown",
+                        hospital = args.doctor.hospital ?: "Unknown",
+                        imageUrl = args.doctor.picture ?: "Unknown",
+                        selectedDate = selectedDate!!,
+                        selectedTime = selectedTime!!
+                    )
+
+                    appointmentViewModel.booking(appointment)
                 }
             }
         }
