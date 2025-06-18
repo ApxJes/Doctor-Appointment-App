@@ -5,27 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
-import com.example.appointmentapp.appointment_features.presentation.adapter.BookingAdapter
-import com.example.appointmentapp.appointment_features.presentation.viewModel.AppointmentViewModel
+import com.example.appointmentapp.appointment_features.presentation.adapter.DoctorsAdapter
+import com.example.appointmentapp.appointment_features.presentation.adapter.FragmentPagerAdapter
 import com.example.appointmentapp.databinding.FragmentAppointmentBinding
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-import kotlin.getValue
 
 @AndroidEntryPoint
-class AppointmentFragment : Fragment() {
+class AppointmentFragment : Fragment(), FavoriteDoctorListFragment.OnDoctorClickListener{
     private var _binding: FragmentAppointmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var bookingAdapter: BookingAdapter
-    private val appointmentViewModel: AppointmentViewModel by viewModels()
+    private lateinit var adapter: FragmentPagerAdapter
+    private lateinit var doctorAdapter: DoctorsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,49 +37,25 @@ class AppointmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bookingAdapter = BookingAdapter(
-            onCancelClick = {
-                appointmentViewModel.deleteAppointment(it)
-            },
-            onRescheduleClick = { appointment ->
-                val doctor = DoctorsVo (
-                    id = appointment.doctorId,
-                    name = appointment.doctorName,
-                    specialized = appointment.specialization,
-                    hospital = appointment.hospital,
-                    picture = appointment.imageUrl,
-                    about = null,
-                    experience = null,
-                    patients = null,
-                    rating = null,
-                    workTime = null
-                )
 
-                val action = AppointmentFragmentDirections
-                    .actionAppointmentFragmentToBookAppointmentFragment(doctor)
-                findNavController().navigate(action)
-            }
-        )
-        setUpBookingRecyclerView()
-        fetchBookingList()
+        adapter = FragmentPagerAdapter(childFragmentManager, lifecycle)
+        doctorAdapter = DoctorsAdapter()
+        binding.viewPager.adapter = adapter
 
+        val tabTitles = listOf("Your Schedule", "Your Favorite")
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            val customView = LayoutInflater.from(requireContext()).inflate(R.layout.tab_item, null)
+            val textView = customView.findViewById<TextView>(R.id.tabText)
+            textView.text = tabTitles[position]
+            tab.customView = customView
+        }.attach()
     }
 
-    private fun fetchBookingList() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                appointmentViewModel.allAppointments.collectLatest {  appointments ->
-                    bookingAdapter.submitList(appointments)
-                }
-            }
-        }
-    }
-
-    private fun setUpBookingRecyclerView() {
-        binding.rcvBooking.apply {
-            adapter = bookingAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+    override fun onDoctorClicked(doctor: DoctorsVo) {
+        val action = AppointmentFragmentDirections
+            .actionAppointmentFragmentToDoctorDetailsFragment(doctor)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

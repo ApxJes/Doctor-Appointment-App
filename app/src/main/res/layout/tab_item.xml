@@ -1,0 +1,10 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tabText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Tab Title"
+    android:textAllCaps="false"
+    android:textColor="#1C2A3A"
+    android:textSize="16sp"
+    android:fontFamily="@font/inter_bold"
+    android:gravity="center" />

@@ -2,18 +2,21 @@ package com.example.appointmentapp.appointment_features.presentation.ui.main_scr
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.appointmentapp.R
+import com.example.appointmentapp.appointment_features.presentation.adapter.DoctorsAdapter
 import com.example.appointmentapp.appointment_features.presentation.viewModel.DoctorDetailsViewModel
 import com.example.appointmentapp.appointment_features.presentation.viewModel.DoctorsViewModel
+import com.example.appointmentapp.appointment_features.presentation.viewModel.LocallySaveDoctorsViewModel
 import com.example.appointmentapp.databinding.FragmentDoctorDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -25,6 +28,9 @@ class DoctorDetailsFragment : Fragment() {
     private val doctorDetailsViewModel: DoctorDetailsViewModel by viewModels()
     private val doctorViewModel: DoctorsViewModel by viewModels()
     private val args: DoctorDetailsFragmentArgs by navArgs()
+
+    private val viewModel: LocallySaveDoctorsViewModel by viewModels()
+    private var doctorWasSaved = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +53,7 @@ class DoctorDetailsFragment : Fragment() {
         doctorDetailsViewModel.fetchDoctorDetailsById(doctorId)
         getProductDetails()
         observeLoading()
+        observeSavedDoctorState()
 
         binding.btnBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
@@ -56,6 +63,19 @@ class DoctorDetailsFragment : Fragment() {
             val doctor = args.doctors
             val action = DoctorDetailsFragmentDirections.actionDoctorDetailsFragmentToBookAppointmentFragment(doctor)
             findNavController().navigate(action)
+        }
+
+        binding.btnSave.setOnClickListener {
+            val isSaved = viewModel.isDoctorSaved(args.doctors)
+            viewModel.toggleProductSave(args.doctors)
+
+            if (!isSaved) {
+                doctorWasSaved = true
+                Toast.makeText(requireContext(), "Successfully saved", Toast.LENGTH_SHORT).show()
+            } else {
+                doctorWasSaved = false
+                Toast.makeText(requireContext(), "Successfully removed", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -79,6 +99,16 @@ class DoctorDetailsFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             doctorViewModel.isLoading.collect { isLoading ->
                 binding.progressBarLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
+            }
+        }
+    }
+
+    private fun observeSavedDoctorState() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.state.collect { savedDoctors ->
+                val isSaved = savedDoctors.any { it.id == args.doctors.id }
+                val icon = if (isSaved) R.drawable.saved else R.drawable.favorite
+                binding.btnSave.setImageResource(icon)
             }
         }
     }

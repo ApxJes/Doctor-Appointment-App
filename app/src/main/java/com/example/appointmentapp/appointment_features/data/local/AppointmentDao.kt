@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -18,4 +19,13 @@ interface AppointmentDao {
 
     @Delete
     suspend fun deleteAppointment(appointment: AppointmentEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDoctor(doctor: DoctorEntity)
+
+    @Query("SELECT * FROM doctor_table ORDER BY doctorId ASC")
+    fun getAllDoctors(): Flow<List<DoctorEntity>>
+
+    @Delete
+    suspend fun deleteDoctor(doctor: DoctorEntity)
 }

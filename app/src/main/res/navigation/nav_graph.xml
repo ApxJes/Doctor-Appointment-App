@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_appointmentFragment_to_bookAppointmentFragment"
             app:destination="@id/bookAppointmentFragment" />
+        <action
+            android:id="@+id/action_appointmentFragment_to_doctorDetailsFragment"
+            app:destination="@id/doctorDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"
@@ -136,6 +139,12 @@
         <action
             android:id="@+id/action_bookAppointmentFragment_to_appointmentFragment"
             app:destination="@id/appointmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteDoctorListFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.FavoriteDoctorListFragment"
+        android:label="fragment_favorite_doctor_list"
+        tools:layout="@layout/fragment_favorite_doctor_list" >
     </fragment>
 
 </navigation>
