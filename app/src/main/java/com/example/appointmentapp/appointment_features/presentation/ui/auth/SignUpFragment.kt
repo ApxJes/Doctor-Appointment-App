@@ -62,7 +62,7 @@ class SignUpFragment : Fragment() {
                         withContext(Dispatchers.Main) {
                             Toast.makeText(requireContext(), "Account created successfully", Toast.LENGTH_SHORT).show()
 
-                            findNavController().navigate(SignUpFragmentDirections.actionSingUpFragmentToHomeFragment())
+                            findNavController().navigate(SignUpFragmentDirections.actionSingUpFragmentToAccountSetUpFragment2())
                         }
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
