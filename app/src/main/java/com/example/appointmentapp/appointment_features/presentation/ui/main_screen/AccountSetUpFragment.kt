@@ -1,6 +1,7 @@
 package com.example.appointmentapp.appointment_features.presentation.ui.main_screen
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -31,17 +32,19 @@ class AccountSetUpFragment : Fragment() {
     private lateinit var storageRef: StorageReference
     private lateinit var firestore: FirebaseFirestore
 
-    private var currentUserProfileUrl: String? = null
+    private var selectImageUri: Uri? = null
 
-    private val pickImageLauncher =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+    private val imagePickerLauncher =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
             uri?.let {
-                uploadProfileImage(it) { imageUrl ->
-                    currentUserProfileUrl = imageUrl
-                    Glide.with(this).load(imageUrl).into(binding.imgProfile)
-                }
+                requireContext().contentResolver.takePersistableUriPermission(
+                    it,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                selectImageUri = it
+                binding.imgProfile.setImageURI(it)
             }
-    }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,20 +63,7 @@ class AccountSetUpFragment : Fragment() {
         firestore = FirebaseFirestore.getInstance()
         storageRef = FirebaseStorage.getInstance().reference
 
-        val currentUser = auth.currentUser
-
-        currentUser?.let {
-            binding.edtName.setText(it.displayName)
-            binding.txvEmail.text = it.email
-        } ?: run {
-            binding.edtName.setText("Unknown")
-            binding.txvEmail.text = "abc@gmail.com"
-        }
-
-        loadUserProfile()
-        binding.imvUploadProfile.setOnClickListener {
-            pickImageLauncher.launch("image/*")
-        }
+        checkLoginState()
 
         binding.btnSave.setOnClickListener {
             val newName = binding.edtName.text.toString().trim()
@@ -87,21 +77,30 @@ class AccountSetUpFragment : Fragment() {
             val dob = binding.edtBirthDate.text.toString().trim()
             val gender = binding.edtGender.text.toString().trim()
 
-            saveUserProfileData(nickname = nickname, dob = dob, gender = gender, profileImageUrl = currentUserProfileUrl ?: "")
+            saveUserProfileData(nickname = nickname, dob = dob, gender = gender)
         }
 
         binding.btnOk.setOnClickListener {
             val action = AccountSetUpFragmentDirections.actionAccountSetUpFragment2ToHomeFragment()
             findNavController().navigate(action)
         }
+
+        binding.imvUploadProfile.setOnClickListener {
+            imagePickerLauncher.launch(arrayOf("image/*"))
+        }
     }
 
     private fun updateUserName(newName: String) {
         val userName = auth.currentUser
         userName?.let {
-            val profileUpdate = UserProfileChangeRequest.Builder()
+            val builder = UserProfileChangeRequest.Builder()
                 .setDisplayName(newName)
-                .build()
+
+            selectImageUri?.let {
+                builder.setPhotoUri(it)
+            }
+
+            val profileUpdate = builder.build()
 
             it.updateProfile(profileUpdate)
                 .addOnCompleteListener {  task ->
@@ -114,12 +113,11 @@ class AccountSetUpFragment : Fragment() {
         }
     }
 
-    private fun saveUserProfileData(nickname: String, profileImageUrl: String, dob: String, gender: String) {
+    private fun saveUserProfileData(nickname: String, dob: String, gender: String) {
         val userId = auth.currentUser?.uid ?: return
 
         val userData = hashMapOf(
             "nickname" to nickname,
-            "profile" to profileImageUrl,
             "dateOfBirth" to dob,
             "gender" to gender
         )
@@ -135,53 +133,24 @@ class AccountSetUpFragment : Fragment() {
             }
     }
 
-    private fun loadUserProfile() {
-        val userId = auth.currentUser?.uid ?: return
+    private fun checkLoginState() {
+        val currentUser = auth.currentUser
+        currentUser.let {
+            binding.edtName.setText(currentUser?.displayName.orEmpty())
+            binding.txvEmail.text = currentUser?.email.orEmpty()
 
-        firestore.collection("users").document(userId)
-            .get()
-            .addOnSuccessListener { document ->
-                if(document != null && document.exists()) {
-                    binding.edtNickName.setText(document.getString("nickname") ?: "")
-                    binding.edtBirthDate.setText(document.getString("dateOfBirth") ?: "")
-                    binding.edtGender.setText(document.getString("gender") ?: "")
-                    val profileImageUrl = document.getString("profile") ?: ""
-
-                    if (profileImageUrl.isNotEmpty()) {
-                        currentUserProfileUrl = profileImageUrl
-                        Glide.with(this).load(profileImageUrl).into(binding.imgProfile)
-                    }
+            if(currentUser?.photoUrl != null) {
+                try {
+                    binding.imgProfile.setImageURI(currentUser.photoUrl)
+                } catch (e: SecurityException) {
+                    binding.imgProfile.setImageResource(R.drawable.user_pf)
                 }
+            } else {
+                binding.imgProfile.setImageResource(R.drawable.user_pf)
             }
-            .addOnFailureListener {
-                Toast.makeText(requireContext(), "Failed to load profile data", Toast.LENGTH_SHORT).show()
-            }
+        }
+
     }
-
-    private fun uploadProfileImage(uri: Uri, onSuccess: (String) -> Unit) {
-        val userId = auth.currentUser?.uid ?: return
-
-        val profileImageRef = FirebaseStorage.getInstance().reference
-            .child("profile_images/$userId.jpg")
-
-        profileImageRef.putFile(uri)
-            .continueWithTask { task ->
-                if (!task.isSuccessful) {
-                    Log.e("UPLOAD_ERROR", "Upload failed: ${task.exception?.message}")
-                    throw task.exception ?: Exception("Upload Failed")
-                }
-                profileImageRef.downloadUrl
-            }
-            .addOnSuccessListener {
-                Log.d("UPLOAD_SUCCESS", "Image uploaded successfully: $it")
-                onSuccess(it.toString())
-            }
-            .addOnFailureListener {
-                Log.e("UPLOAD_ERROR", "Failed to get download URL: ${it.message}")
-                Toast.makeText(requireContext(), "Image upload failed: ${it.message}", Toast.LENGTH_SHORT).show()
-            }
-    }
-
 
     override fun onDestroy() {
         super.onDestroy()

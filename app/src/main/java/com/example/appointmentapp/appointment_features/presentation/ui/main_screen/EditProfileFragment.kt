@@ -1,12 +1,13 @@
 package com.example.appointmentapp.appointment_features.presentation.ui.main_screen
 
-import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.appointmentapp.R
 import com.example.appointmentapp.databinding.FragmentEditProfileBinding
@@ -24,6 +25,19 @@ class EditProfileFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
+    private var selectImageUri: Uri? = null
+
+    private val imagePickerLauncher =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
+            uri?.let {
+                requireContext().contentResolver.takePersistableUriPermission(
+                    it,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                selectImageUri = it
+                binding.imgProfile.setImageURI(it)
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,10 +54,7 @@ class EditProfileFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        val currentUser = auth.currentUser
-        binding.edtName.setText(currentUser?.displayName.orEmpty())
-        binding.txvEmail.text = currentUser?.email.orEmpty()
-
+        checkLoginState()
         loadUserProfileData()
 
         binding.btnSave.setOnClickListener {
@@ -53,7 +64,7 @@ class EditProfileFragment : Fragment() {
             val newGender = binding.edtGender.text.toString().trim()
 
             if (newName.isNotEmpty()) {
-                updateUserName(newName)
+                updateUserNamePhoto(newName)
                 saveUpdatedProfileData(newNickname, newDob, newGender)
             } else {
                 Toast.makeText(requireContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show()
@@ -62,6 +73,10 @@ class EditProfileFragment : Fragment() {
 
         binding.btnBackSpace.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        binding.imvUploadProfile.setOnClickListener {
+            imagePickerLauncher.launch(arrayOf("image/*"))
         }
     }
 
@@ -81,11 +96,16 @@ class EditProfileFragment : Fragment() {
             }
     }
 
-    private fun updateUserName(newName: String) {
+    private fun updateUserNamePhoto(newName: String) {
         auth.currentUser?.let { user ->
-            val profileUpdates = UserProfileChangeRequest.Builder()
+            val builder = UserProfileChangeRequest.Builder()
                 .setDisplayName(newName)
-                .build()
+
+            selectImageUri?.let {
+                builder.setPhotoUri(it)
+            }
+
+            val profileUpdates = builder.build()
 
             user.updateProfile(profileUpdates)
                 .addOnCompleteListener { task ->
@@ -113,6 +133,25 @@ class EditProfileFragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to update Firestore data", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun checkLoginState() {
+        val currentUser = auth.currentUser
+        currentUser.let {
+            binding.edtName.setText(currentUser?.displayName.orEmpty())
+            binding.txvEmail.text = currentUser?.email.orEmpty()
+
+            if(currentUser?.photoUrl != null) {
+                try {
+                    binding.imgProfile.setImageURI(currentUser.photoUrl)
+                } catch (e: SecurityException) {
+                    binding.imgProfile.setImageResource(R.drawable.user_pf)
+                }
+            } else {
+                binding.imgProfile.setImageResource(R.drawable.user_pf)
+            }
+        }
+
     }
 
     override fun onDestroyView() {

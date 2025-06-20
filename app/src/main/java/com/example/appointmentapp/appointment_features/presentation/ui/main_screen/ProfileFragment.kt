@@ -40,6 +40,7 @@ class ProfileFragment : Fragment() {
 
         binding.txvUserName.text = auth.currentUser?.displayName ?: "No Name"
         binding.userEmail.text = auth.currentUser?.email ?: "No Name"
+        binding.imvUserImage.setImageURI(auth.currentUser?.photoUrl)
 
         binding.Logout.setOnClickListener {
             setLogOut()
