@@ -25,13 +25,16 @@ class DoctorListFragment : Fragment() {
 
     private var _binding: FragmentDoctorListBinding? = null
     private val binding get() = _binding!!
-    private lateinit var doctorAdapter: DoctorsAdapter
+
     private val doctorViewModel: DoctorsViewModel by viewModels()
+    private lateinit var doctorAdapter: DoctorsAdapter
+
     private var allDoctors: List<DoctorsVo> = emptyList()
     private var selectedButton: AppCompatButton? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDoctorListBinding.inflate(inflater, container, false)
@@ -41,33 +44,30 @@ class DoctorListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
-        setupSpecializationButtons()
-        observeDoctors()
-        observeLoading()
-
+        initUI()
         doctorViewModel.getDoctors()
+    }
 
-        binding.btnBack.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-        }
-
-        doctorAdapter.setOnClickListener {
-            val action = DoctorListFragmentDirections.actionDoctorListFragmentToDoctorDetailsFragment(it)
-            findNavController().navigate(action)
-        }
-
+    private fun initUI() {
+        setupRecyclerView()
+        setupButtonListeners()
+        setupObservers()
+        setupNavigation()
     }
 
     private fun setupRecyclerView() {
-        doctorAdapter = DoctorsAdapter()
+        doctorAdapter = DoctorsAdapter().apply {
+            setOnClickListener { doctor ->
+                navigateToDoctorDetails(doctor)
+            }
+        }
         binding.rcvDoctors.apply {
             adapter = doctorAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
-    private fun setupSpecializationButtons() {
+    private fun setupButtonListeners() {
         val buttonMap = mapOf(
             binding.btnAll to "All",
             binding.btnDentistry to "Dentist",
@@ -80,56 +80,81 @@ class DoctorListFragment : Fragment() {
             binding.btnVeccination to "Veccinatiologist"
         )
 
-        for((button, specialization) in buttonMap) {
+        buttonMap.forEach { (button, specialization) ->
             button.setOnClickListener {
                 updateSelectedButton(button)
-                filterDoctors(specialization)
+                filterDoctorsBySpecialization(specialization)
             }
         }
 
         updateSelectedButton(binding.btnAll)
     }
 
-    private fun observeDoctors() {
+    private fun setupObservers() {
         lifecycleScope.launchWhenStarted {
             doctorViewModel.doctors.collectLatest { doctorList ->
                 allDoctors = doctorList
-                filterDoctors("All")
+                filterDoctorsBySpecialization("All")
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            doctorViewModel.isLoading.collect { isLoading ->
+                handleLoadingState(isLoading)
             }
         }
     }
 
-    private fun observeLoading() {
-        lifecycleScope.launchWhenStarted {
-            doctorViewModel.isLoading.collect { isLoading ->
-                binding.progressBarLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
-            }
+    private fun setupNavigation() {
+        binding.btnBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun filterDoctors(specialization: String) {
-        val filtered = if (specialization == "All") {
+    private fun filterDoctorsBySpecialization(specialization: String) {
+        val filteredList = if (specialization == "All") {
             allDoctors
         } else {
-            allDoctors.filter { it.specialized.equals(specialization, ignoreCase = true) }
+            allDoctors.filter { it.specialized.equals(specialization) }
         }
 
-        doctorAdapter.differ.submitList(filtered)
-        binding.txvDoctorsCount.text = "${filtered.size} Founds"
-        binding.txvEmpty.visibility = if (filtered.isEmpty()) View.VISIBLE else View.GONE
+        updateDoctorsListUI(filteredList)
     }
 
-    private fun updateSelectedButton(newSelected: AppCompatButton) {
-        selectedButton?.setBackgroundResource(R.drawable.auth_bg)
-        selectedButton?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+    private fun updateDoctorsListUI(doctors: List<DoctorsVo>) {
+        doctorAdapter.differ.submitList(doctors)
+        binding.txvDoctorsCount.text = "${doctors.size} Found"
 
-        newSelected.setBackgroundResource(R.drawable.category_bg)
-        newSelected.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-
-        selectedButton = newSelected
+        val showEmptyState = doctors.isEmpty() && !doctorViewModel.isLoading.value
+        binding.txvEmpty.visibility = if (showEmptyState) View.VISIBLE else View.GONE
+        binding.rcvDoctors.visibility = if (showEmptyState) View.GONE else View.VISIBLE
     }
 
+    private fun handleLoadingState(isLoading: Boolean) {
+        binding.progressBarLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
+        if (isLoading) {
+            binding.txvEmpty.visibility = View.GONE
+            binding.rcvDoctors.visibility = View.GONE
+        }
+    }
+
+    private fun updateSelectedButton(newButton: AppCompatButton) {
+        selectedButton?.apply {
+            setBackgroundResource(R.drawable.auth_bg)
+            setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        }
+
+        newButton.setBackgroundResource(R.drawable.category_bg)
+        newButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+        selectedButton = newButton
+    }
+
+    private fun navigateToDoctorDetails(doctor: DoctorsVo) {
+        val action = DoctorListFragmentDirections.actionDoctorListFragmentToDoctorDetailsFragment(doctor)
+        findNavController().navigate(action)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

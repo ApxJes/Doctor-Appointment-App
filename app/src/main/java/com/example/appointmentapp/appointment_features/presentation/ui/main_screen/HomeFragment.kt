@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -40,37 +41,78 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        initLocationClient()
+        observeLocation()
+        setupClickListeners()
+        checkLocationPermissionAndFetch()
+    }
 
+    private fun initLocationClient() {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+    }
+
+    private fun observeLocation() {
         locationViewModel.locationText.observe(viewLifecycleOwner) { location ->
             binding.txvLocation.text = location
         }
+    }
 
-        checkLocationPermissionAndFetch()
-
+    private fun setupClickListeners() {
         binding.edtSerach.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDoctorListFragment())
         }
+
+        binding.txvSeeAll.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCategoriesFragment())
+        }
+
+        setupCategoryButtons()
     }
 
+    private fun setupCategoryButtons() {
+        binding.btnDentistry.setOnClickListener { navigateToCategory("Dentist") }
+        binding.btnCardiologist.setOnClickListener { navigateToCategory("Cardiologist") }
+        binding.btnPulmonologist.setOnClickListener { navigateToCategory("Pulmonologist") }
+        binding.btnGeneral.setOnClickListener { navigateToCategory("General") }
+        binding.btnNeurology.setOnClickListener { navigateToCategory("Neurologist") }
+        binding.btnGastroenterology.setOnClickListener { navigateToCategory("Gastroenterologist") }
+        binding.btnLaboratory.setOnClickListener { navigateToCategory("Laboratory") }
+        binding.btnVeccination.setOnClickListener { navigateToCategory("Veccination") }
+    }
+
+    private fun navigateToCategory(category: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToCategoryFragment(category)
+        findNavController().navigate(action)
+    }
+
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     private fun checkLocationPermissionAndFetch() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
+        if (isLocationPermissionGranted()) {
             fetchUserLocation()
         } else {
-            requestPermissions(
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
-            )
+            requestLocationPermission()
         }
     }
 
+    private fun isLocationPermissionGranted(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestLocationPermission() {
+        requestPermissions(
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            LOCATION_PERMISSION_REQUEST_CODE
+        )
+    }
+
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -90,28 +132,24 @@ class HomeFragment : Fragment() {
                 "We couldn’t access your location. Please allow location permission to get nearby suggestions.",
                 Snackbar.LENGTH_LONG
             ).show()
-
         }
     }
 
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     private fun fetchUserLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            fusedLocationProviderClient.lastLocation.addOnSuccessListener { location: Location? ->
-                location?.let {
-                    val geocoder = Geocoder(requireContext(), Locale.getDefault())
-                    val address = geocoder.getFromLocation(it.latitude, it.longitude, 1)
+        if (!isLocationPermissionGranted()) return
 
-                    if (!address.isNullOrEmpty()) {
-                        val city = address[0].locality ?: "Unknown city"
-                        val country = address[0].countryName ?: "Unknown Country"
-                        locationViewModel.updateLocation(city, country)
-                    } else {
-                        locationViewModel.updateLocation("Unknown city", "Unknown Country")
-                    }
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener { location: Location? ->
+            location?.let {
+                val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                val addresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
+
+                if (!addresses.isNullOrEmpty()) {
+                    val city = addresses[0].locality ?: "Unknown city"
+                    val country = addresses[0].countryName ?: "Unknown Country"
+                    locationViewModel.updateLocation(city, country)
+                } else {
+                    locationViewModel.updateLocation("Unknown city", "Unknown Country")
                 }
             }
         }

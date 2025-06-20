@@ -69,7 +69,7 @@
                 android:src="@drawable/baseline_search_24"
                 app:tint="#9CA3AF" />
 
-            <EditText
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
