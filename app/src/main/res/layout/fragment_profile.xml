@@ -11,22 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:fontFamily="@font/space_grotesk_bold"
+        android:fontFamily="@font/inter_bold"
         android:text="Profile"
-        android:textColor="@color/black"
+        android:textColor="#374151"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnBackPress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/back_press"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,9 +44,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/space_grotesk_bold"
+        android:fontFamily="@font/inter"
         android:text="Unknown"
-        android:textColor="@color/black"
+        android:textColor="#1F2A37"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,9 +57,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/supreme_regular"
+        android:fontFamily="@font/inter"
         android:text="example@gmai.com"
-        android:textColor="@color/black"
+        android:textColor="#6B7280"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +68,7 @@
     <LinearLayout
         android:id="@+id/editProfile"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="27dp"
         android:layout_marginTop="30dp"
         android:background="?android:selectableItemBackground"
         android:gravity="center_vertical"
@@ -93,15 +82,16 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/edit_profile" />
+            android:src="@drawable/edit_profile"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/switzer_bold"
+            android:fontFamily="@font/inter"
             android:text="Edit Profile"
-            android:textColor="@color/black"
+            android:textColor="#6B7280"
             android:textSize="16sp" />
 
         <View
@@ -110,8 +100,8 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="14dp"
+            android:layout_height="15dp"
             android:src="@drawable/forward_arrow" />
     </LinearLayout>
 
@@ -121,7 +111,7 @@
         android:layout_height="1dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@color/gray"
+        android:background="#E5E7EB"
         app:layout_constraintEnd_toEndOf="@id/editProfile"
         app:layout_constraintStart_toStartOf="@id/editProfile"
         app:layout_constraintTop_toBottomOf="@id/editProfile" />
@@ -129,8 +119,8 @@
     <LinearLayout
         android:id="@+id/favorite"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="17dp"
         android:background="?android:selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -143,15 +133,15 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/favorite" />
+            android:src="@drawable/save" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/switzer_bold"
+            android:fontFamily="@font/inter"
             android:text="Favorite"
-            android:textColor="@color/black"
+            android:textColor="#6B7280"
             android:textSize="16sp" />
 
         <View
@@ -160,8 +150,8 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="14dp"
+            android:layout_height="15dp"
             android:src="@drawable/forward_arrow" />
     </LinearLayout>
 
@@ -171,7 +161,7 @@
         android:layout_height="1dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@color/gray"
+        android:background="#E5E7EB"
         app:layout_constraintEnd_toEndOf="@id/favorite"
         app:layout_constraintStart_toStartOf="@id/favorite"
         app:layout_constraintTop_toBottomOf="@id/favorite" />
@@ -179,8 +169,8 @@
     <LinearLayout
         android:id="@+id/Logout"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="17dp"
         android:background="?android:selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -193,15 +183,15 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/log_out" />
+            android:src="@drawable/logout" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/switzer_bold"
-            android:text="Logout"
-            android:textColor="@color/black"
+            android:fontFamily="@font/inter"
+            android:text="Log Out"
+            android:textColor="#6B7280"
             android:textSize="16sp" />
 
         <View
@@ -210,8 +200,8 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="14dp"
+            android:layout_height="15dp"
             android:src="@drawable/forward_arrow" />
     </LinearLayout>
 
@@ -221,7 +211,7 @@
         android:layout_height="1dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@color/gray"
+        android:background="#E5E7EB"
         app:layout_constraintEnd_toEndOf="@id/Logout"
         app:layout_constraintStart_toStartOf="@id/Logout"
         app:layout_constraintTop_toBottomOf="@id/Logout" />

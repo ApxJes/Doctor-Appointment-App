@@ -35,8 +35,8 @@ class ThirdScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnFinish.setOnClickListener {
-            findNavController().navigate(R.id.action_viewPagerFragment_to_singUpFragment)
             onBoardingFinished()
+            findNavController().navigate(R.id.action_viewPagerFragment_to_singUpFragment)
         }
     }
 

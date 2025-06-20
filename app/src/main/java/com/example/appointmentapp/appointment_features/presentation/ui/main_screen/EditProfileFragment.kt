@@ -13,6 +13,7 @@ import com.example.appointmentapp.databinding.FragmentEditProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,8 +41,8 @@ class EditProfileFragment : Fragment() {
         firestore = FirebaseFirestore.getInstance()
 
         val currentUser = auth.currentUser
-        binding.edtName.setText(currentUser?.displayName ?: "")
-        binding.txvEmail.text = currentUser?.email ?: ""
+        binding.edtName.setText(currentUser?.displayName.orEmpty())
+        binding.txvEmail.text = currentUser?.email.orEmpty()
 
         loadUserProfileData()
 
@@ -66,14 +67,13 @@ class EditProfileFragment : Fragment() {
 
     private fun loadUserProfileData() {
         val userId = auth.currentUser?.uid ?: return
-
         firestore.collection("users").document(userId)
             .get()
             .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    binding.edtNickName.setText(document.getString("nickname") ?: "")
-                    binding.edtBirthDate.setText(document.getString("dateOfBirth") ?: "")
-                    binding.edtGender.setText(document.getString("gender") ?: "")
+                if (document.exists()) {
+                    binding.edtNickName.setText(document.getString("nickname").orEmpty())
+                    binding.edtBirthDate.setText(document.getString("dateOfBirth").orEmpty())
+                    binding.edtGender.setText(document.getString("gender").orEmpty())
                 }
             }
             .addOnFailureListener {
@@ -82,17 +82,14 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun updateUserName(newName: String) {
-        val user = auth.currentUser
-        if (user != null) {
+        auth.currentUser?.let { user ->
             val profileUpdates = UserProfileChangeRequest.Builder()
                 .setDisplayName(newName)
                 .build()
 
             user.updateProfile(profileUpdates)
                 .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(requireContext(), "Name updated", Toast.LENGTH_SHORT).show()
-                    } else {
+                    if (!task.isSuccessful) {
                         Toast.makeText(requireContext(), "Failed to update name", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -101,7 +98,6 @@ class EditProfileFragment : Fragment() {
 
     private fun saveUpdatedProfileData(nickname: String, dob: String, gender: String) {
         val userId = auth.currentUser?.uid ?: return
-
         val updatedData = mapOf(
             "nickname" to nickname,
             "dateOfBirth" to dob,
@@ -109,9 +105,10 @@ class EditProfileFragment : Fragment() {
         )
 
         firestore.collection("users").document(userId)
-            .update(updatedData)
+            .set(updatedData, SetOptions.merge())
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                loadUserProfileData()
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to update Firestore data", Toast.LENGTH_SHORT).show()
