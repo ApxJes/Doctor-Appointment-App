@@ -10,6 +10,7 @@
     <string name="children_hospital_yanagon">Yangon Children\'s Hospital (YCH) is the largest public pediatric hospital in Myanmar, serving as a major referral center for pediatric care. Located in Yangon, </string>
     <string name="sign_in"><u>Sign in</u></string>
     <string name="sign_up"><u>Sign up</u></string>
+    <string name="forget_password"><u>Forget Password?</u></string>
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>
