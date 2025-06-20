@@ -2,6 +2,8 @@ package com.example.appointmentapp.appointment_features.presentation.ui.main_scr
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,9 +45,7 @@ class DoctorListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initUI()
-        doctorViewModel.getDoctors()
     }
 
     private fun initUI() {
@@ -53,13 +53,12 @@ class DoctorListFragment : Fragment() {
         setupButtonListeners()
         setupObservers()
         setupNavigation()
+        setupSearchListener()
     }
 
     private fun setupRecyclerView() {
         doctorAdapter = DoctorsAdapter().apply {
-            setOnClickListener { doctor ->
-                navigateToDoctorDetails(doctor)
-            }
+            setOnClickListener { doctor -> navigateToDoctorDetails(doctor) }
         }
         binding.rcvDoctors.apply {
             adapter = doctorAdapter
@@ -83,7 +82,10 @@ class DoctorListFragment : Fragment() {
         buttonMap.forEach { (button, specialization) ->
             button.setOnClickListener {
                 updateSelectedButton(button)
-                filterDoctorsBySpecialization(specialization)
+                filterDoctorsBySpecializationAndQuery(
+                    specialization,
+                    binding.edtSearchDoctor.text?.toString().orEmpty().trim()
+                )
             }
         }
 
@@ -94,14 +96,15 @@ class DoctorListFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             doctorViewModel.doctors.collectLatest { doctorList ->
                 allDoctors = doctorList
-                filterDoctorsBySpecialization("All")
+                filterDoctorsBySpecializationAndQuery(
+                    selectedButton?.text?.toString() ?: "All",
+                    binding.edtSearchDoctor.text?.toString().orEmpty().trim()
+                )
             }
         }
 
         lifecycleScope.launchWhenStarted {
-            doctorViewModel.isLoading.collect { isLoading ->
-                handleLoadingState(isLoading)
-            }
+            doctorViewModel.isLoading.collect { isLoading -> handleLoadingState(isLoading) }
         }
     }
 
@@ -111,15 +114,54 @@ class DoctorListFragment : Fragment() {
         }
     }
 
+    private fun setupSearchListener() {
+        binding.edtSearchDoctor.addTextChangedListener(
+            object : TextWatcher {
+                override fun beforeTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {}
+
+                override fun onTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    val query = charSequence?.toString().orEmpty().trim()
+                    filterDoctorsBySpecializationAndQuery(
+                        selectedButton?.text?.toString() ?: "All",
+                        query
+                    )
+                }
+
+                override fun afterTextChanged(editable: Editable?) {
+                }
+            }
+        )
+    }
+
+
     @SuppressLint("SetTextI18n")
-    private fun filterDoctorsBySpecialization(specialization: String) {
-        val filteredList = if (specialization == "All") {
+    private fun filterDoctorsBySpecializationAndQuery(
+        specialization: String,
+        query: String
+    ) {
+        val filteredBySpecialization = if (specialization == "All") {
             allDoctors
         } else {
             allDoctors.filter { it.specialized.equals(specialization) }
         }
 
-        updateDoctorsListUI(filteredList)
+        val filteredByQuery = if (query.isEmpty()) {
+            filteredBySpecialization
+        } else {
+            filteredBySpecialization.filter { it.name!!.contains(query) }
+        }
+
+        updateDoctorsListUI(filteredByQuery)
     }
 
     private fun updateDoctorsListUI(doctors: List<DoctorsVo>) {
@@ -152,7 +194,8 @@ class DoctorListFragment : Fragment() {
     }
 
     private fun navigateToDoctorDetails(doctor: DoctorsVo) {
-        val action = DoctorListFragmentDirections.actionDoctorListFragmentToDoctorDetailsFragment(doctor)
+        val action = DoctorListFragmentDirections
+            .actionDoctorListFragmentToDoctorDetailsFragment(doctor)
         findNavController().navigate(action)
     }
 
