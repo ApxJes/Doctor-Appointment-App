@@ -112,6 +112,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="#E5E7EB"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@id/editProfile"
         app:layout_constraintStart_toStartOf="@id/editProfile"
         app:layout_constraintTop_toBottomOf="@id/editProfile" />
@@ -161,6 +162,7 @@
         android:layout_height="1dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
         android:background="#E5E7EB"
         app:layout_constraintEnd_toEndOf="@id/favorite"
         app:layout_constraintStart_toStartOf="@id/favorite"
@@ -212,6 +214,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="#E5E7EB"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@id/Logout"
         app:layout_constraintStart_toStartOf="@id/Logout"
         app:layout_constraintTop_toBottomOf="@id/Logout" />

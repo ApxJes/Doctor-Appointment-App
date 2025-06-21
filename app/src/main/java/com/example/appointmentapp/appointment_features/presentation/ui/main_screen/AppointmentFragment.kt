@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
@@ -38,6 +39,10 @@ class AppointmentFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewPagerAndTabs()
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {}
+        })
     }
 
     override fun onDoctorClicked(doctor: DoctorsVo) {

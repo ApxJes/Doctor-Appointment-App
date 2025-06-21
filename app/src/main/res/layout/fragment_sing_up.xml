@@ -228,14 +228,14 @@
         android:focusable="true"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="12dp"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ly">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/google" />
 
         <TextView
@@ -250,29 +250,37 @@
             android:fontFamily="@font/inter"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txvHaveAnAccount"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Do you have an account?"
-        android:textColor="@color/textGray"
-        android:fontFamily="@font/inter"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/btnLoginWithGoogle"
-        app:layout_constraintTop_toBottomOf="@id/btnLoginWithGoogle" />
+        app:layout_constraintTop_toBottomOf="@id/btnLoginWithGoogle">
 
-    <TextView
-        android:id="@+id/txvSignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/sign_in"
-        android:textColor="@color/blue"
-        app:layout_constraintStart_toEndOf="@id/txvHaveAnAccount"
-        app:layout_constraintTop_toBottomOf="@id/btnLoginWithGoogle" />
+        <TextView
+            android:id="@+id/txvHaveAnAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do you have an account?"
+            android:textColor="@color/textGray"
+            android:layout_gravity="center"
+            android:fontFamily="@font/inter"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txvSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/sign_in"
+            android:textColor="@color/blue"
+            android:layout_gravity="center"/>
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -219,7 +219,6 @@
             android:textSize="14sp"/>
     </LinearLayout>
 
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
@@ -235,30 +234,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/genderInputLayout" />
-
-    <FrameLayout
-        android:id="@+id/flLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
-
-        <include layout="@layout/success_layout"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnOk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:text="Ok"
-            android:background="@drawable/on_boarding_button"
-            android:textColor="@color/white"
-            android:layout_marginBottom="40dp"/>
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

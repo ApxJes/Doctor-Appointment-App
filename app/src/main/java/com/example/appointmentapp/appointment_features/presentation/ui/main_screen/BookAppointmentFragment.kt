@@ -88,7 +88,6 @@ class BookAppointmentFragment : Fragment() {
 
         binding.btnDone.setOnClickListener {
             binding.cardSelectedDate.visibility = View.GONE
-            findNavController().navigate(BookAppointmentFragmentDirections.actionBookAppointmentFragmentToAppointmentFragment())
         }
 
         val timeButtons = listOf(

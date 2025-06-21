@@ -1,6 +1,7 @@
 package com.example.appointmentapp.appointment_features.presentation.ui.main_screen
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,8 +11,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatButton
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.appointmentapp.R
@@ -78,11 +82,8 @@ class AccountSetUpFragment : Fragment() {
             val gender = binding.edtGender.text.toString().trim()
 
             saveUserProfileData(nickname = nickname, dob = dob, gender = gender)
-        }
 
-        binding.btnOk.setOnClickListener {
-            val action = AccountSetUpFragmentDirections.actionAccountSetUpFragment2ToHomeFragment()
-            findNavController().navigate(action)
+            setDialogBoxToNavigateToHome()
         }
 
         binding.imvUploadProfile.setOnClickListener {
@@ -125,9 +126,6 @@ class AccountSetUpFragment : Fragment() {
         firestore.collection("users")
             .document(userId)
             .set(userData)
-            .addOnSuccessListener {
-                binding.flLayout.visibility = View.VISIBLE
-            }
             .addOnFailureListener { e ->
                 Toast.makeText(requireContext(), "Failed to save profile: ${e.message}", Toast.LENGTH_SHORT).show()
             }
@@ -150,6 +148,26 @@ class AccountSetUpFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun setDialogBoxToNavigateToHome() {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.account_setup_dialog, null)
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(false)
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+
+        val btnOk = dialogView.findViewById<AppCompatButton>(R.id.btnOk)
+        btnOk.setOnClickListener {
+            alertDialog.dismiss()
+
+            val navOptions = NavOptions.Builder()
+                .setPopUpTo(R.id.nav_graph, true)
+                .build()
+            findNavController().navigate(AccountSetUpFragmentDirections.actionAccountSetUpFragment2ToHomeFragment())
+        }
     }
 
     override fun onDestroy() {
