@@ -38,10 +38,6 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
 
-        binding.txvUserName.text = auth.currentUser?.displayName ?: "No Name"
-        binding.userEmail.text = auth.currentUser?.email ?: "No Name"
-        binding.imvUserImage.setImageURI(auth.currentUser?.photoUrl)
-
         binding.Logout.setOnClickListener {
             setLogOut()
         }
@@ -49,6 +45,8 @@ class ProfileFragment : Fragment() {
         binding.editProfile.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAccountSetUpFragment())
         }
+
+        setUserProfilePictureEmailAndName()
     }
 
     @SuppressLint("InflateParams")
@@ -77,7 +75,25 @@ class ProfileFragment : Fragment() {
                 .build()
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLoginFragment(), navOptions)
         }
+    }
 
+    private fun setUserProfilePictureEmailAndName() {
+        val user = auth.currentUser
+        user?.let {
+            binding.txvUserName.text = it.displayName ?: "Unknown"
+            binding.userEmail.text = it.email ?: "Unknown"
+
+            if(it.photoUrl != null) {
+                try {
+
+                    binding.imvUserImage.setImageURI(it.photoUrl)
+                }  catch (e: SecurityException) {
+                    binding.imvUserImage.setImageResource(R.drawable.user_pf)
+                }
+            } else {
+                binding.imvUserImage.setImageResource(R.drawable.user_pf)
+            }
+        }
     }
 
     override fun onDestroyView() {
