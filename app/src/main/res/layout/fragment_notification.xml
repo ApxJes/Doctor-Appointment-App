@@ -4,26 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".appointment_features.presentation.ui.main_screen.FavoriteDoctorListFragment">
+    android:padding="16dp"
+    tools:context=".appointment_features.presentation.ui.main_screen.NotificationFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvDoctorList"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back_press"
+            android:background="@color/white"
+            android:id="@+id/btnBack"
+            android:layout_gravity="center_vertical"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Notification"
+            android:textColor="@color/textGray2"
+            android:fontFamily="@font/inter_bold"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/emptyLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favorite doctors list is empty"
+            android:text="There is no notification yet."
             android:textSize="16sp"
             android:fontFamily="@font/inter_bold"
             android:textColor="@color/textGray"/>

@@ -47,6 +47,10 @@ class SettingFragment : Fragment() {
         binding.about.setOnClickListener {
             showAboutDialog()
         }
+
+        binding.btnBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     private fun showChangePasswordDialog() {
@@ -62,6 +66,8 @@ class SettingFragment : Fragment() {
                 val newPassword = newPass.text.toString()
                 handlePasswordChange(oldPassword, newPassword)
             }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     private fun handlePasswordChange(oldPassword: String, newPassword: String) {
@@ -92,7 +98,7 @@ class SettingFragment : Fragment() {
     private fun showAboutDialog() {
         AlertDialog.Builder(requireContext())
             .setTitle("About")
-            .setMessage("Doctor Appointment App v1.0\nDeveloped by Your Name.\n© 2025 All rights reserved.")
+            .setMessage("Doctor Appointment App v1.0\nDeveloped by Aung Pyae Kyaw.\n© 2025 All rights reserved.")
             .setPositiveButton("OK", null)
             .show()
     }

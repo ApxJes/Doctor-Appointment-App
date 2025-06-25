@@ -31,6 +31,10 @@ class HelpAndSupportFragment : Fragment() {
         binding.btnSendFeedback.setOnClickListener {
             sendEmailFeedback()
         }
+
+        binding.btnBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     private fun sendEmailFeedback() {

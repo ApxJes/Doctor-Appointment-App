@@ -49,6 +49,10 @@ class TermsAndConditionsFragment : Fragment() {
         binding.btnAccept.setOnClickListener {
             Toast.makeText(requireContext(), "Thank you for accepting the terms!", Toast.LENGTH_SHORT).show()
         }
+
+        binding.btnBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     override fun onDestroyView() {
