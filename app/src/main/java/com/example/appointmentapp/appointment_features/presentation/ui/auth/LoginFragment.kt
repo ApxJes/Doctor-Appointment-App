@@ -36,7 +36,9 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
+
         setUpClickListener()
+        restoreButtonState()
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {}
@@ -71,10 +73,15 @@ class LoginFragment : Fragment() {
             return
         }
 
+        binding.btnProgressBar.visibility = View.VISIBLE
+        binding.btnSignIn.text = ""
+        binding.btnSignIn.isEnabled = false
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 auth.signInWithEmailAndPassword(email, password).await()
                 withContext(Dispatchers.Main) {
+                    restoreButtonState()
                     Toast.makeText(
                         requireContext(),
                         "Login successful",
@@ -85,6 +92,7 @@ class LoginFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
+                    restoreButtonState()
                     Toast.makeText(
                         requireContext(),
                         "Invalid Email or Password",
@@ -121,6 +129,12 @@ class LoginFragment : Fragment() {
         }
 
         return true
+    }
+
+    private fun restoreButtonState() {
+        binding.btnProgressBar.visibility = View.GONE
+        binding.btnSignIn.text = "Sign In"
+        binding.btnSignIn.isEnabled = true
     }
 
     override fun onDestroyView() {

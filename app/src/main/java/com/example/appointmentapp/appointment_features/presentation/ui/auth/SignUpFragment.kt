@@ -43,6 +43,7 @@ class SignUpFragment : Fragment() {
         })
 
         setUpOnClickListener()
+        restoreButtonState()
     }
 
     private fun setUpOnClickListener() {
@@ -69,6 +70,10 @@ class SignUpFragment : Fragment() {
             return
         }
 
+        binding.btnProgressBar.visibility = View.VISIBLE
+        binding.btnCreateAccount.text = ""
+        binding.btnCreateAccount.isEnabled = false
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 auth.createUserWithEmailAndPassword(email, password).await()
@@ -80,6 +85,7 @@ class SignUpFragment : Fragment() {
                 user?.updateProfile(profileUpdate)?.await()
 
                 withContext(Dispatchers.Main) {
+                    restoreButtonState()
                     Toast.makeText(
                         requireContext(),
                         "Account created successfully",
@@ -90,6 +96,7 @@ class SignUpFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
+                    restoreButtonState()
                     Toast.makeText(
                         requireContext(),
                         e.message ?: "Registration failed",
@@ -133,6 +140,12 @@ class SignUpFragment : Fragment() {
         }
 
         return true
+    }
+
+    private fun restoreButtonState() {
+        binding.btnProgressBar.visibility = View.GONE
+        binding.btnCreateAccount.text = "Create Account"
+        binding.btnCreateAccount.isEnabled = true
     }
 
     override fun onDestroyView() {

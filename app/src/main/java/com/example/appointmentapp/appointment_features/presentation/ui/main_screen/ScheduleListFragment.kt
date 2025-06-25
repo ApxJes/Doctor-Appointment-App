@@ -18,7 +18,6 @@ import com.example.appointmentapp.databinding.FragmentScheduleListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlin.getValue
 
 @AndroidEntryPoint
 class ScheduleListFragment : Fragment() {
@@ -71,7 +70,12 @@ class ScheduleListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 appointmentViewModel.allAppointments.collectLatest {  appointments ->
-                    bookingAdapter.submitList(appointments)
+                    if (appointments.isEmpty()) {
+                        binding.rcvBooking.visibility = View.GONE
+                        binding.emptyLayout.visibility = View.VISIBLE
+                    } else {
+                        bookingAdapter.submitList(appointments)
+                    }
                 }
             }
         }

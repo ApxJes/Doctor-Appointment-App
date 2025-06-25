@@ -2,9 +2,12 @@ package com.example.appointmentapp.appointment_features.presentation.ui.main_scr
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.util.Log.e
 import androidx.fragment.app.Fragment
@@ -12,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatButton
@@ -26,6 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Calendar
 
 @AndroidEntryPoint
 class AccountSetUpFragment : Fragment() {
@@ -68,6 +73,13 @@ class AccountSetUpFragment : Fragment() {
         storageRef = FirebaseStorage.getInstance().reference
 
         checkLoginState()
+
+        binding.BirthInputLayout.setOnClickListener {
+            showDatePicker()
+        }
+
+        binding.edtBirthDate.isFocusable = false
+        binding.edtBirthDate.isClickable = false
 
         binding.btnSave.setOnClickListener {
             val newName = binding.edtName.text.toString().trim()
@@ -147,8 +159,29 @@ class AccountSetUpFragment : Fragment() {
                 binding.imgProfile.setImageResource(R.drawable.user_pf)
             }
         }
-
     }
+
+    @SuppressLint("DefaultLocale")
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, year, month, dayOfMonth ->
+                val formattedDate = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year)
+                binding.edtBirthDate.text = formattedDate
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+
+        datePickerDialog.show()
+    }
+
+
 
     private fun setDialogBoxToNavigateToHome() {
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.account_setup_dialog, null)
@@ -159,15 +192,14 @@ class AccountSetUpFragment : Fragment() {
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
 
-        val btnOk = dialogView.findViewById<AppCompatButton>(R.id.btnOk)
-        btnOk.setOnClickListener {
-            alertDialog.dismiss()
+        val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.visibility = View.VISIBLE
 
-            val navOptions = NavOptions.Builder()
-                .setPopUpTo(R.id.nav_graph, true)
-                .build()
-            findNavController().navigate(AccountSetUpFragmentDirections.actionAccountSetUpFragment2ToHomeFragment())
-        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+            val action = AccountSetUpFragmentDirections.actionAccountSetUpFragment2ToHomeFragment()
+            findNavController().navigate(action)
+        }, 2000)
     }
 
     override fun onDestroy() {

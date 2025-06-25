@@ -161,21 +161,36 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnCreateAccount"
+    <FrameLayout
+        android:id="@+id/btnCreateAccountContainer"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/on_boarding_button"
-        android:text="Create Account"
-        android:textAllCaps="false"
-        android:fontFamily="@font/inter"
+        android:layout_height="wrap_content"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PasswordInputLayout" />
+        app:layout_constraintTop_toBottomOf="@id/PasswordInputLayout"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/on_boarding_button"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:text="Create Account" />
+
+        <ProgressBar
+            android:id="@+id/btnProgressBar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/ly"
@@ -184,7 +199,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCreateAccount"
+        app:layout_constraintTop_toBottomOf="@id/btnCreateAccountContainer"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="30dp">
@@ -219,7 +234,7 @@
     <LinearLayout
         android:id="@+id/btnLoginWithGoogle"
         android:layout_width="match_parent"
-        android:layout_height="41dp"
+        android:layout_height="45dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"

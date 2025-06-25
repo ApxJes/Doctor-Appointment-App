@@ -75,6 +75,15 @@
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_helpAndSupportFragment"
+            app:destination="@id/helpAndSupportFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_termsAndConditionsFragment"
+            app:destination="@id/termsAndConditionsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/singUpFragment"
@@ -189,5 +198,17 @@
             android:name="category"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/helpAndSupportFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.HelpAndSupportFragment"
+        android:label="HelpAndSupportFragment" />
+    <fragment
+        android:id="@+id/termsAndConditionsFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.TermsAndConditionsFragment"
+        android:label="TermsAndConditionsFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.SettingFragment"
+        android:label="SettingFragment" />
 
 </navigation>

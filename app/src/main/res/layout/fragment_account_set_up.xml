@@ -176,7 +176,7 @@
             android:src="@drawable/date_of_birth"
             app:tint="@color/gray" />
 
-        <EditText
+        <TextView
             android:id="@+id/edtBirthDate"
             android:layout_width="0dp"
             android:layout_height="match_parent"

@@ -6,14 +6,14 @@
     app:cardCornerRadius="30dp"
     android:elevation="8dp"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="@color/white"
+    android:background="@drawable/card_bg"
     android:padding="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@drawable/card_bg">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -43,15 +43,14 @@
             android:textAlignment="center"
             android:textColor="@android:color/black"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnOk"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="40dp"
-            android:text="Ok"
-            android:background="@drawable/on_boarding_button"
-            android:textColor="@color/white" />
+            style="?android:attr/progressBarStyleLarge"
+            android:indeterminate="true" />
 
     </LinearLayout>
 

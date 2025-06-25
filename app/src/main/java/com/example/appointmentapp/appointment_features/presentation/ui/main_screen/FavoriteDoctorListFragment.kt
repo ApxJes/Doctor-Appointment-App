@@ -67,7 +67,13 @@ class FavoriteDoctorListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collectLatest { saveDoctors ->
-                    doctorAdapter.differ.submitList(saveDoctors)
+
+                    if(saveDoctors.isEmpty()) {
+                        binding.rcvDoctorList.visibility = View.GONE
+                        binding.emptyLayout.visibility = View.VISIBLE
+                    } else {
+                        doctorAdapter.differ.submitList(saveDoctors)
+                    }
                 }
             }
         }

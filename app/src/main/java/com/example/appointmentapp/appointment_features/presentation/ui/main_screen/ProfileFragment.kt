@@ -39,11 +39,16 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
 
+        setUpButtonOnClickListener()
+        setUserProfilePictureEmailAndName()
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {}
         })
+    }
 
-        binding.Logout.setOnClickListener {
+    private fun setUpButtonOnClickListener() {
+        binding.logout.setOnClickListener {
             setLogOut()
         }
 
@@ -51,7 +56,20 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAccountSetUpFragment())
         }
 
-        setUserProfilePictureEmailAndName()
+        binding.helpAndSupport.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToHelpAndSupportFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.termsAndCondition.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToTermsAndConditionsFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.setting.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToSettingFragment()
+            findNavController().navigate(action)
+        }
     }
 
     @SuppressLint("InflateParams")

@@ -1,5 +1,7 @@
 package com.example.appointmentapp.appointment_features.presentation.ui.main_screen
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +18,7 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Calendar
 
 @AndroidEntryPoint
 class EditProfileFragment : Fragment() {
@@ -56,6 +59,13 @@ class EditProfileFragment : Fragment() {
 
         checkLoginState()
         loadUserProfileData()
+
+        binding.BirthInputLayout.setOnClickListener {
+            showDatePicker()
+        }
+
+        binding.edtBirthDate.isFocusable = false
+        binding.edtBirthDate.isClickable = false
 
         binding.btnSave.setOnClickListener {
             val newName = binding.edtName.text.toString().trim()
@@ -152,6 +162,26 @@ class EditProfileFragment : Fragment() {
             }
         }
 
+    }
+
+    @SuppressLint("DefaultLocale")
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, year, month, dayOfMonth ->
+                val formattedDate = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year)
+                binding.edtBirthDate.text = formattedDate
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+
+        datePickerDialog.show()
     }
 
     override fun onDestroyView() {

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/terms_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv_terms_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="4dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/terms_and_conditions_text"
+            android:textColor="@color/textGray"
+            android:textSize="14sp" />
+    </ScrollView>
+
+    <CheckBox
+        android:id="@+id/cb_accept_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I have read and accept the Terms and Conditions"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/textGray2"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_accept"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Accept"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/disable_button"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:enabled="false" />
+
+</LinearLayout>

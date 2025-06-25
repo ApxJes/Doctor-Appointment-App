@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_help_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/inter_bold"
+            android:paddingBottom="16dp"
+            android:text="Help &amp; Support"
+            android:textColor="@color/textGray2"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Frequently Asked Questions"
+            android:textColor="@color/textGray2"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/textGray"
+            android:text="• How do I book an appointment?"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/inter"
+            android:text="Open the doctor list, select a doctor, and click 'Book Appointment'."
+            android:textColor="@color/textGray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/textGray"
+            android:text="• How can I cancel an appointment?"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/inter"
+            android:text="Go to your appointments and select the appointment to cancel."
+            android:textColor="@color/textGray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/textGray"
+            android:text="• How can I edit my profile?"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/inter"
+            android:text="Go to your profile screen and tap the 'Edit Profile' button."
+            android:textColor="@color/textGray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Contact Us"
+            android:textSize="18sp"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="@color/textGray2"
+            />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:autoLink="email"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/textGray"
+            android:text="Email: aungkyae32@gmail.com"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:autoLink="phone"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/textGray"
+            android:text="Phone: +95 9 759090762"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_send_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Send Feedback"
+            android:textAllCaps="false"
+            android:background="@drawable/on_boarding_button"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:text="App Version: 1.0.0"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="@color/textGray2"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</ScrollView>
+
