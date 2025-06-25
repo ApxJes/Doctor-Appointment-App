@@ -84,6 +84,9 @@
         <action
             android:id="@+id/action_profileFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/singUpFragment"
@@ -210,5 +213,10 @@
         android:id="@+id/settingFragment"
         android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.SettingFragment"
         android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
 
 </navigation>

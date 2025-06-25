@@ -70,6 +70,11 @@ class ProfileFragment : Fragment() {
             val action = ProfileFragmentDirections.actionProfileFragmentToSettingFragment()
             findNavController().navigate(action)
         }
+
+        binding.notification.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToNotificationFragment()
+            findNavController().navigate(action)
+        }
     }
 
     @SuppressLint("InflateParams")
