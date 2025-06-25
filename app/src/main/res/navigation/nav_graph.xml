@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_singUpFragment"
             app:destination="@id/singUpFragment" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_singUpFragment2"
+            app:destination="@id/singUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/appointmentFragment"

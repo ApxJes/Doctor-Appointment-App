@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -54,6 +55,17 @@ class AccountSetUpFragment : Fragment() {
                 binding.imgProfile.setImageURI(it)
             }
         }
+
+    override fun onResume() {
+        super.onResume()
+        val genderOptions = listOf("Male", "Female", "Other")
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            genderOptions
+        )
+        binding.edtGender.setAdapter(adapter)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

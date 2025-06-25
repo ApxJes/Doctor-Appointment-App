@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -42,6 +43,17 @@ class EditProfileFragment : Fragment() {
             }
         }
 
+    override fun onResume() {
+        super.onResume()
+        val genderOptions = listOf("Male", "Female", "Other")
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            genderOptions
+        )
+        binding.edtGender.setAdapter(adapter)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,6 +78,7 @@ class EditProfileFragment : Fragment() {
 
         binding.edtBirthDate.isFocusable = false
         binding.edtBirthDate.isClickable = false
+
 
         binding.btnSave.setOnClickListener {
             val newName = binding.edtName.text.toString().trim()

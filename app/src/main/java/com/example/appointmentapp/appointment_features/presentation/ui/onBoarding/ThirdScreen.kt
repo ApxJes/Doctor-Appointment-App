@@ -38,6 +38,11 @@ class ThirdScreen : Fragment() {
             onBoardingFinished()
             findNavController().navigate(R.id.action_viewPagerFragment_to_singUpFragment)
         }
+
+        binding.txvSkip.setOnClickListener {
+            val action = R.id.action_viewPagerFragment_to_singUpFragment
+            findNavController().navigate(action)
+        }
     }
 
     private fun onBoardingFinished() {

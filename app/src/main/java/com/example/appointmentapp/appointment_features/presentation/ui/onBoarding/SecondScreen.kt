@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.appointmentapp.R
 import com.example.appointmentapp.databinding.FragmentFirstScreenBinding
@@ -35,6 +36,11 @@ class SecondScreen : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
         binding.btnNext.setOnClickListener {
             viewPager?.currentItem = 2
+        }
+
+        binding.txvSkip.setOnClickListener {
+            val action = R.id.action_viewPagerFragment_to_singUpFragment
+            findNavController().navigate(action)
         }
     }
 
