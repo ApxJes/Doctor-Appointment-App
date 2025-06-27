@@ -98,12 +98,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edtSerach">
 
-            <ImageView
-                android:id="@+id/imvDoctorImageBanner"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/ViewPager2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/doctor_image_banner" />
+                android:layout_height="165dp" />
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dotsColor="#9B9B9B"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="7dp"
+                app:dotsSpacing="4dp"
+                app:dotsWidthFactor="2.5"
+                app:selectedDotColor="#26232F"
+                app:progressMode="true"
+                android:layout_gravity="center|bottom" />
 
         </androidx.cardview.widget.CardView>
 

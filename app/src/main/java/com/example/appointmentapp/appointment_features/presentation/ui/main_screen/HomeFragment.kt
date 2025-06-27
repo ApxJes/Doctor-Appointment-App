@@ -22,7 +22,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.presentation.adapter.HospitalsAdapter
+import com.example.appointmentapp.appointment_features.presentation.adapter.ImageBannerAdapter
 import com.example.appointmentapp.appointment_features.presentation.viewModel.HospitalsViewModel
 import com.example.appointmentapp.appointment_features.presentation.viewModel.LocallySaveHospitalsViewModel
 import com.example.appointmentapp.appointment_features.presentation.viewModel.LocationViewModel
@@ -32,7 +34,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import java.util.Locale
 
 @AndroidEntryPoint
@@ -45,6 +46,7 @@ class HomeFragment : Fragment() {
     private lateinit var hospitalAdapter: HospitalsAdapter
     private val hospitalsViewModel: HospitalsViewModel by viewModels()
     private val locallySaveHospitalsViewModel: LocallySaveHospitalsViewModel by viewModels()
+    private lateinit var imageBannerAdapter: ImageBannerAdapter
 
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
 
@@ -77,7 +79,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-
+        setUpImageBanner()
         initLocationClient()
         observeLocation()
         setupClickListeners()
@@ -232,6 +234,21 @@ class HomeFragment : Fragment() {
             adapter = hospitalAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
+    }
+
+    private fun setUpImageBanner() {
+        val imageList = listOf(
+            R.drawable.doctor_image_banner,
+            R.drawable.appointment11,
+            R.drawable.appointment2,
+            R.drawable.appointment3
+        )
+
+        imageBannerAdapter = ImageBannerAdapter(this, imageList)
+        binding.ViewPager2.adapter =imageBannerAdapter
+
+        binding.dotsIndicator.attachTo(binding.ViewPager2)
+
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
