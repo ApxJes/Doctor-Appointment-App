@@ -17,13 +17,19 @@ import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.appointmentapp.appointment_features.presentation.adapter.HospitalsAdapter
+import com.example.appointmentapp.appointment_features.presentation.viewModel.HospitalsViewModel
 import com.example.appointmentapp.appointment_features.presentation.viewModel.LocationViewModel
 import com.example.appointmentapp.databinding.FragmentHomeBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import java.util.Locale
 
 @AndroidEntryPoint
@@ -33,6 +39,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val locationViewModel: LocationViewModel by activityViewModels()
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var hospitalAdapter: HospitalsAdapter
+    private val hospitalsViewModel: HospitalsViewModel by viewModels()
 
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
 
@@ -48,11 +56,15 @@ class HomeFragment : Fragment() {
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hospitalAdapter = HospitalsAdapter()
 
         initLocationClient()
         observeLocation()
         setupClickListeners()
         checkLocationPermissionAndFetch()
+
+        setUpHospitalViewModel()
+        setUpHospitalsListObserver()
     }
 
     private fun initLocationClient() {
@@ -185,6 +197,21 @@ class HomeFragment : Fragment() {
             }
             .setNegativeButton("Cancel", null)
             .show()
+    }
+
+    private fun setUpHospitalsListObserver() {
+        lifecycleScope.launchWhenStarted {
+            hospitalsViewModel.getHospitals.collectLatest { hospitalList ->
+                hospitalAdapter.differ.submitList(hospitalList)
+            }
+        }
+    }
+
+    private fun setUpHospitalViewModel() {
+        binding.rcvHospital.apply {
+            adapter = hospitalAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])

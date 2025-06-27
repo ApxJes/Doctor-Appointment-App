@@ -1,11 +1,12 @@
 package com.example.appointmentapp.appointment_features.data.repository
 
-import com.example.appointmentapp.appointment_features.data.api_service.DoctorApiService
+import com.example.appointmentapp.appointment_features.data.api_service.AppointmentApiService
 import com.example.appointmentapp.appointment_features.data.api_service.MapApiService
 import com.example.appointmentapp.appointment_features.data.local.AppointmentDao
 import com.example.appointmentapp.appointment_features.data.local.AppointmentEntity
 import com.example.appointmentapp.appointment_features.data.remote.dto.DoctorsDto
-import com.example.appointmentapp.appointment_features.data.remote.dto.HospitalDto
+import com.example.appointmentapp.appointment_features.data.remote.dto.HospitalsDto
+import com.example.appointmentapp.appointment_features.data.remote.dto.NearByHospitalOnGoogleMapDto
 import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
 import com.example.appointmentapp.appointment_features.domain.repository.DomainRepository
 import kotlinx.coroutines.flow.Flow
@@ -15,25 +16,31 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class RepositoryImplementation @Inject constructor(
-    private val api: MapApiService,
-    private val doctorApi: DoctorApiService,
+    private val mapApi: MapApiService,
+    private val appointmentApi: AppointmentApiService,
     private val dao: AppointmentDao
 ): DomainRepository {
 
-    override suspend fun getHospitals(query: String): Flow<List<HospitalDto>> = flow {
-        emit(api.getNearByHospital(query))
+    override suspend fun getNearByHospitalsOnGoogleMap(query: String): Flow<List<NearByHospitalOnGoogleMapDto>> = flow {
+        emit(mapApi.getNearByHospitalONGoogleMap(query))
     }.catch {
         emit(emptyList())
     }
 
     override suspend fun getDoctors(): Flow<List<DoctorsDto>> = flow {
-        emit(doctorApi.getDoctors())
+        emit(appointmentApi.getDoctors())
     }.catch {
         emit(emptyList())
     }
 
     override suspend fun getDoctorDetails(id: String): Flow<DoctorsDto> = flow {
-        emit(doctorApi.getDoctorDetails(id))
+        emit(appointmentApi.getDoctorDetails(id))
+    }
+
+    override suspend fun getHospitals(): Flow<List<HospitalsDto>> = flow{
+        emit(appointmentApi.getHospitals())
+    }.catch {
+        emit(emptyList())
     }
 
     override suspend fun insertAppointment(appointment: AppointmentEntity) {

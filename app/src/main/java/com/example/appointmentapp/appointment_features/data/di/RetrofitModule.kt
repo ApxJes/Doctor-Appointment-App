@@ -1,6 +1,6 @@
 package com.example.appointmentapp.appointment_features.data.di
 
-import com.example.appointmentapp.appointment_features.data.api_service.DoctorApiService
+import com.example.appointmentapp.appointment_features.data.api_service.AppointmentApiService
 import com.example.appointmentapp.appointment_features.data.api_service.MapApiService
 import com.example.appointmentapp.core.Constants.DOCTORS_BASE_URL
 import com.example.appointmentapp.core.Constants.MAP_BASE_URL
@@ -58,7 +58,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideDoctorApiService(@DoctorRetrofit retrofit: Retrofit): DoctorApiService {
-        return retrofit.create(DoctorApiService::class.java)
+    fun provideDoctorApiService(@DoctorRetrofit retrofit: Retrofit): AppointmentApiService {
+        return retrofit.create(AppointmentApiService::class.java)
     }
 }

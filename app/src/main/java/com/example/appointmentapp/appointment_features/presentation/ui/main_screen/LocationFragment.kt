@@ -19,7 +19,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.presentation.viewModel.LocationViewModel
-import com.example.appointmentapp.appointment_features.presentation.viewModel.NearByHospitalViewModel
+import com.example.appointmentapp.appointment_features.presentation.viewModel.GetNearByHospitalsOnGoogleMapViewModel
 import com.example.appointmentapp.databinding.FragmentLocationBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -43,7 +43,7 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
     private val locationViewModel: LocationViewModel by activityViewModels()
-    private val getNearByHospitalViewModel: NearByHospitalViewModel by viewModels()
+    private val getNearByHospitalViewModel: GetNearByHospitalsOnGoogleMapViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

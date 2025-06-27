@@ -1,10 +1,10 @@
 package com.example.appointmentapp.appointment_features.data.remote.dto
 
 
-import com.example.appointmentapp.appointment_features.domain.model.HospitalVo
+import com.example.appointmentapp.appointment_features.domain.model.GetNearByHospitalOnGoogleMapVo
 import com.google.gson.annotations.SerializedName
 
-data class HospitalDto(
+data class NearByHospitalOnGoogleMapDto(
     @SerializedName("addresstype")
     val addresstype: String?,
     @SerializedName("boundingbox")
@@ -34,8 +34,8 @@ data class HospitalDto(
     @SerializedName("type")
     val type: String?
 ) {
-    fun toHospitalVo(): HospitalVo {
-        return HospitalVo(
+    fun toHospitalVo(): GetNearByHospitalOnGoogleMapVo {
+        return GetNearByHospitalOnGoogleMapVo(
             displayName = displayName ?: "Unknown",
             lat = lat ?: "0.0",
             lon = lon ?: "0.0"
