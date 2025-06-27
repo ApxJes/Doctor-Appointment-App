@@ -11,7 +11,7 @@ class GetDoctorDetailsUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(id: String): Flow<DoctorsVo> {
-        return repository.getDoctorDetails(id).map {
+        return repository.fetchDoctorsDetailsFromNetwork(id).map {
             it.toDoctorsVo()
         }
     }

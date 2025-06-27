@@ -5,27 +5,40 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
+import com.example.appointmentapp.appointment_features.domain.model.HospitalsVo
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AppointmentDao {
 
+    // Appointment
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAppointment(appointment: AppointmentEntity)
+    suspend fun insertAppointmentToLocal(appointment: AppointmentEntity)
 
     @Query("SELECT * FROM appointment_table ORDER BY id ASC")
-    fun getAllAppointments(): Flow<List<AppointmentEntity>>
+    fun getAllAppointmentsFromLocal(): Flow<List<AppointmentEntity>>
 
     @Delete
-    suspend fun deleteAppointment(appointment: AppointmentEntity)
+    suspend fun deleteAppointmentFromLocal(appointment: AppointmentEntity)
 
+    // Doctors
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDoctor(doctor: DoctorEntity)
+    suspend fun insertDoctorToLocal(doctor: DoctorEntity)
 
     @Query("SELECT * FROM doctor_table ORDER BY doctorId ASC")
-    fun getAllDoctors(): Flow<List<DoctorEntity>>
+    fun getAllDoctorsFromLocal(): Flow<List<DoctorEntity>>
 
     @Delete
-    suspend fun deleteDoctor(doctor: DoctorEntity)
+    suspend fun deleteDoctorFromLocal(doctor: DoctorEntity)
+
+    // Hospitals
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertHospitalToLocal(hospital: HospitalsVo)
+
+    @Query("SELECT * FROM hospitals_table ORDER BY id ASC")
+    fun getAllHospitalsFromLocal(): Flow<List<HospitalsVo>>
+
+    @Delete
+    suspend fun deleteHospitalsFromLocal(hospital: HospitalsVo)
+
 }

@@ -16,17 +16,17 @@ class LocallySaveDoctorsViewModel @Inject constructor(
     private val repository: DomainRepository
 ): ViewModel() {
 
-    private val _isSaveDoctors: StateFlow<List<DoctorsVo>> = repository.getAllDoctors()
+    private val _isSaveDoctors: StateFlow<List<DoctorsVo>> = repository.getAllDoctorsFromLocal()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
     val state get() = _isSaveDoctors
 
-    fun toggleProductSave(doctor: DoctorsVo) {
+    fun toggleDoctorsSave(doctor: DoctorsVo) {
         viewModelScope.launch {
             val isSaved = _isSaveDoctors.value.any { it.id == doctor.id }
             if(isSaved) {
-                repository.deleteDoctor(doctor)
+                repository.deleteDoctorFromLocal(doctor)
             } else {
-                repository.insertDoctor(doctor)
+                repository.insertDoctorToLocal(doctor)
             }
         }
     }

@@ -75,6 +75,11 @@ class ProfileFragment : Fragment() {
             val action = ProfileFragmentDirections.actionProfileFragmentToNotificationFragment()
             findNavController().navigate(action)
         }
+
+        binding.favorite.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToFavoriteHospitalFragment()
+            findNavController().navigate(action)
+        }
     }
 
     @SuppressLint("InflateParams")

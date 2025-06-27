@@ -11,7 +11,7 @@ class GetNearByHospitalsOnGoogleMapUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(lat: Double, long: Double): Flow<List<GetNearByHospitalOnGoogleMapVo>> {
         val query = "hospital near $lat $long"
-        return repository.getNearByHospitalsOnGoogleMap(query).map { hospitalDtoList ->
+        return repository.fetchNearbyHospitalsFromMap(query).map { hospitalDtoList ->
             hospitalDtoList.map { it.toHospitalVo() }
 
         }

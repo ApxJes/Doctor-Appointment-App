@@ -8,6 +8,7 @@ import com.example.appointmentapp.appointment_features.data.remote.dto.DoctorsDt
 import com.example.appointmentapp.appointment_features.data.remote.dto.HospitalsDto
 import com.example.appointmentapp.appointment_features.data.remote.dto.NearByHospitalOnGoogleMapDto
 import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
+import com.example.appointmentapp.appointment_features.domain.model.HospitalsVo
 import com.example.appointmentapp.appointment_features.domain.repository.DomainRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -21,51 +22,63 @@ class RepositoryImplementation @Inject constructor(
     private val dao: AppointmentDao
 ): DomainRepository {
 
-    override suspend fun getNearByHospitalsOnGoogleMap(query: String): Flow<List<NearByHospitalOnGoogleMapDto>> = flow {
+    override suspend fun fetchNearbyHospitalsFromMap(query: String): Flow<List<NearByHospitalOnGoogleMapDto>> = flow {
         emit(mapApi.getNearByHospitalONGoogleMap(query))
     }.catch {
         emit(emptyList())
     }
 
-    override suspend fun getDoctors(): Flow<List<DoctorsDto>> = flow {
+    override suspend fun fetchDoctorsFromNetwork(): Flow<List<DoctorsDto>> = flow {
         emit(appointmentApi.getDoctors())
     }.catch {
         emit(emptyList())
     }
 
-    override suspend fun getDoctorDetails(id: String): Flow<DoctorsDto> = flow {
+    override suspend fun fetchDoctorsDetailsFromNetwork(id: String): Flow<DoctorsDto> = flow {
         emit(appointmentApi.getDoctorDetails(id))
     }
 
-    override suspend fun getHospitals(): Flow<List<HospitalsDto>> = flow{
+    override suspend fun fetchHospitalsFromNetwork(): Flow<List<HospitalsDto>> = flow{
         emit(appointmentApi.getHospitals())
     }.catch {
         emit(emptyList())
     }
 
-    override suspend fun insertAppointment(appointment: AppointmentEntity) {
-        return dao.insertAppointment(appointment)
+    override suspend fun insertAppointmentToLocal(appointment: AppointmentEntity) {
+        return dao.insertAppointmentToLocal(appointment)
     }
 
-    override suspend fun deleteAppointment(appointment: AppointmentEntity) {
-        return dao.deleteAppointment(appointment)
+    override suspend fun deleteAppointmentFromLocal(appointment: AppointmentEntity) {
+        return dao.deleteAppointmentFromLocal(appointment)
     }
 
-    override fun getAllAppointments(): Flow<List<AppointmentEntity>> {
-        return dao.getAllAppointments()
+    override fun getAllAppointmentsFromLocal(): Flow<List<AppointmentEntity>> {
+        return dao.getAllAppointmentsFromLocal()
     }
 
-    override suspend fun insertDoctor(doctors: DoctorsVo) {
-        return dao.insertDoctor(doctors.toDoctorEntity())
+    override suspend fun insertDoctorToLocal(doctors: DoctorsVo) {
+        return dao.insertDoctorToLocal(doctors.toDoctorEntity())
     }
 
-    override suspend fun deleteDoctor(doctors: DoctorsVo) {
-        return dao.deleteDoctor(doctors.toDoctorEntity())
+    override suspend fun deleteDoctorFromLocal(doctors: DoctorsVo) {
+        return dao.deleteDoctorFromLocal(doctors.toDoctorEntity())
     }
 
-    override fun getAllDoctors(): Flow<List<DoctorsVo>> {
-        return dao.getAllDoctors().map {
+    override fun getAllDoctorsFromLocal(): Flow<List<DoctorsVo>> {
+        return dao.getAllDoctorsFromLocal().map {
             it.map{ it.toDoctorsVo() }
         }
+    }
+
+    override suspend fun insertHospitalsToLocal(hospital: HospitalsVo) {
+        return dao.insertHospitalToLocal(hospital)
+    }
+
+    override suspend fun deleteHospitalFromLocal(hospital: HospitalsVo) {
+        return dao.deleteHospitalsFromLocal(hospital)
+    }
+
+    override fun getAllHospitalsFromLocal(): Flow<List<HospitalsVo>> {
+        return dao.getAllHospitalsFromLocal()
     }
 }

@@ -11,11 +11,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.data.local.AppointmentEntity
-import com.example.appointmentapp.appointment_features.presentation.viewModel.AppointmentViewModel
+import com.example.appointmentapp.appointment_features.presentation.viewModel.LocallySaveAppointmentViewModel
 import com.example.appointmentapp.databinding.FragmentBookAppointmentBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +31,7 @@ class BookAppointmentFragment : Fragment() {
     private var selectedTime: String? = null
     private var selectedButton: AppCompatButton? = null
     private val args: BookAppointmentFragmentArgs by navArgs()
-    private val appointmentViewModel: AppointmentViewModel by viewModels()
+    private val appointmentViewModel: LocallySaveAppointmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

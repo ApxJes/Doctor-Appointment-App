@@ -12,24 +12,24 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AppointmentViewModel @Inject constructor(
+class LocallySaveAppointmentViewModel @Inject constructor(
     private val repository: DomainRepository
 ): ViewModel(){
 
     val allAppointments: StateFlow<List<AppointmentEntity>> =
-        repository.getAllAppointments().stateIn(
+        repository.getAllAppointmentsFromLocal().stateIn(
             viewModelScope, SharingStarted.Lazily, emptyList()
         )
 
     fun booking(appointment: AppointmentEntity) {
         viewModelScope.launch {
-            repository.insertAppointment(appointment)
+            repository.insertAppointmentToLocal(appointment)
         }
     }
 
     fun deleteAppointment(appointment: AppointmentEntity) {
         viewModelScope.launch {
-            repository.deleteAppointment(appointment)
+            repository.deleteAppointmentFromLocal(appointment)
         }
     }
 }

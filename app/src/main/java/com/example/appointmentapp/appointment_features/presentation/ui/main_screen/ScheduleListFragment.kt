@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
 import com.example.appointmentapp.appointment_features.presentation.adapter.BookingAdapter
-import com.example.appointmentapp.appointment_features.presentation.viewModel.AppointmentViewModel
+import com.example.appointmentapp.appointment_features.presentation.viewModel.LocallySaveAppointmentViewModel
 import com.example.appointmentapp.databinding.FragmentScheduleListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -25,7 +25,7 @@ class ScheduleListFragment : Fragment() {
     private var _binding: FragmentScheduleListBinding? = null
     private val binding get() = _binding!!
     private lateinit var bookingAdapter: BookingAdapter
-    private val appointmentViewModel: AppointmentViewModel by viewModels()
+    private val appointmentViewModel: LocallySaveAppointmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

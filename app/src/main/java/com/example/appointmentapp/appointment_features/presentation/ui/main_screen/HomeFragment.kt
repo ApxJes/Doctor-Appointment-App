@@ -1,6 +1,7 @@
 package com.example.appointmentapp.appointment_features.presentation.ui.main_screen
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -23,6 +24,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appointmentapp.appointment_features.presentation.adapter.HospitalsAdapter
 import com.example.appointmentapp.appointment_features.presentation.viewModel.HospitalsViewModel
+import com.example.appointmentapp.appointment_features.presentation.viewModel.LocallySaveHospitalsViewModel
 import com.example.appointmentapp.appointment_features.presentation.viewModel.LocationViewModel
 import com.example.appointmentapp.databinding.FragmentHomeBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -30,6 +32,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 @AndroidEntryPoint
@@ -41,6 +44,7 @@ class HomeFragment : Fragment() {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var hospitalAdapter: HospitalsAdapter
     private val hospitalsViewModel: HospitalsViewModel by viewModels()
+    private val locallySaveHospitalsViewModel: LocallySaveHospitalsViewModel by viewModels()
 
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
 
@@ -53,10 +57,26 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hospitalAdapter = HospitalsAdapter()
+
+        hospitalAdapter = HospitalsAdapter(
+            onSaveClick = { hospital ->
+                locallySaveHospitalsViewModel.toggleHospitalSave(hospital)
+            },
+            isHospitalSaved = { hospital ->
+               locallySaveHospitalsViewModel.isHospitalSaved(hospital)
+            }
+        )
+
+        lifecycleScope.launchWhenStarted {
+            locallySaveHospitalsViewModel.state.collectLatest {
+                hospitalAdapter.notifyDataSetChanged()
+            }
+        }
+
 
         initLocationClient()
         observeLocation()

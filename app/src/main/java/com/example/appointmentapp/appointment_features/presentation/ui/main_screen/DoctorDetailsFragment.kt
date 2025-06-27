@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.appointmentapp.R
-import com.example.appointmentapp.appointment_features.presentation.adapter.DoctorsAdapter
 import com.example.appointmentapp.appointment_features.presentation.viewModel.DoctorDetailsViewModel
 import com.example.appointmentapp.appointment_features.presentation.viewModel.DoctorsViewModel
 import com.example.appointmentapp.appointment_features.presentation.viewModel.LocallySaveDoctorsViewModel
@@ -67,7 +66,7 @@ class DoctorDetailsFragment : Fragment() {
 
         binding.btnSave.setOnClickListener {
             val isSaved = viewModel.isDoctorSaved(args.doctors)
-            viewModel.toggleProductSave(args.doctors)
+            viewModel.toggleDoctorsSave(args.doctors)
 
             if (!isSaved) {
                 doctorWasSaved = true

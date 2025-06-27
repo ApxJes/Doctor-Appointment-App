@@ -90,6 +90,9 @@
         <action
             android:id="@+id/action_profileFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_favoriteHospitalFragment"
+            app:destination="@id/favoriteHospitalFragment" />
     </fragment>
     <fragment
         android:id="@+id/singUpFragment"
@@ -221,5 +224,10 @@
         android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/favoriteHospitalFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.FavoriteHospitalFragment"
+        android:label="fragment_favorite_hospital"
+        tools:layout="@layout/fragment_favorite_hospital" />
 
 </navigation>

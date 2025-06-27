@@ -11,7 +11,7 @@ class GetDoctorsUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): Flow<List<DoctorsVo>> {
-        val doctors = repository.getDoctors().map {
+        val doctors = repository.fetchDoctorsFromNetwork().map {
             it.map { it.toDoctorsVo() }
         }
 

@@ -1,6 +1,5 @@
 package com.example.appointmentapp.appointment_features.domain.use_case
 
-import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
 import com.example.appointmentapp.appointment_features.domain.model.HospitalsVo
 import com.example.appointmentapp.appointment_features.domain.repository.DomainRepository
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +11,7 @@ class GetHospitalsUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): Flow<List<HospitalsVo>> {
-        return repository.getHospitals().map { hospitalsDtoList ->
+        return repository.fetchHospitalsFromNetwork().map { hospitalsDtoList ->
             hospitalsDtoList.map { hospitalsDto ->
                 hospitalsDto.toHospitalsVo()
             }

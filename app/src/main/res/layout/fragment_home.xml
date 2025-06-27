@@ -372,19 +372,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ly4" />
 
-        <TextView
-            android:id="@+id/txvSeeAllMedicalCenter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="20dp"
-            android:fontFamily="@font/inter_semi_bold"
-            android:text="See All"
-            android:textColor="#6B7280"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ly4" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="220dp"
