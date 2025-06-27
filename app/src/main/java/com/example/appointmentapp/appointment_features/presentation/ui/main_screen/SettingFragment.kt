@@ -98,7 +98,7 @@ class SettingFragment : Fragment() {
     private fun showAboutDialog() {
         AlertDialog.Builder(requireContext())
             .setTitle("About")
-            .setMessage("Doctor Appointment App v1.0\nDeveloped by Aung Pyae Kyaw.\n© 2025 All rights reserved.")
+            .setMessage("Doctor Appointment App v1.0.2\nDeveloped by Aung Pyae Kyaw.\n© 2025 All rights reserved.")
             .setPositiveButton("OK", null)
             .show()
     }

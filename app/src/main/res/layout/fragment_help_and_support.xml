@@ -103,6 +103,62 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/textGray"
+            android:text="• How can I see my favorite doctor list?"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/inter"
+            android:text="Go to the Appointment screen and swipe left to see your Favorite Doctors."
+            android:textColor="@color/textGray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/textGray"
+            android:text="• How can I see my favorite hospital list?"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/inter"
+            android:text="Go to your Profile screen and tap the heart (♥) icon to view your favorite hospitals."
+            android:textColor="@color/textGray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/textGray"
+            android:text="• How can I search nearby hospitals?"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/inter"
+            android:text="Turn on your location. Then, go to the Location screen where nearby hospitals will be automatically shown based on your location."
+            android:textColor="@color/textGray"
+            android:textSize="14sp" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Contact Us"
             android:textSize="18sp"
@@ -147,7 +203,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
-            android:text="App Version: 1.0.0"
+            android:text="App Version: 1.0.2"
             android:fontFamily="@font/inter_bold"
             android:textColor="@color/textGray2"
             android:textSize="14sp" />
