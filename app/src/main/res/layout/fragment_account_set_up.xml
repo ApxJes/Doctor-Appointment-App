@@ -207,14 +207,19 @@
             android:id="@+id/edtGender"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/login_bg"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:inputType="none"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:fontFamily="@font/inter"
-            android:background="@drawable/login_bg"
             android:text="Gender"
+            android:fontFamily="@font/inter"
             android:textColor="@color/textGray"
             android:textColorHint="@color/textGray"
             android:textSize="14sp" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
 

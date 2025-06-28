@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
 import com.example.appointmentapp.databinding.DoctorsLayoutBinding
 
-class DoctorsAdapter: RecyclerView.Adapter<DoctorsAdapter.DoctorsViewHolder>() {
+class FavoriteDoctorsAdapter: RecyclerView.Adapter<FavoriteDoctorsAdapter.DoctorsViewHolder>() {
 
     private val differCallBack = object : DiffUtil.ItemCallback<DoctorsVo>() {
         override fun areItemsTheSame(

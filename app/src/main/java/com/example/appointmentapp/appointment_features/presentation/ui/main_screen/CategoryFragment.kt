@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.appointmentapp.appointment_features.presentation.adapter.DoctorsAdapter
+import com.example.appointmentapp.appointment_features.presentation.adapter.FavoriteDoctorsAdapter
 import com.example.appointmentapp.appointment_features.presentation.viewModel.DoctorsViewModel
 import com.example.appointmentapp.databinding.FragmentCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +21,7 @@ class CategoryFragment : Fragment() {
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
     private val args: CategoryFragmentArgs by navArgs()
-    private lateinit var doctorAdapter: DoctorsAdapter
+    private lateinit var doctorAdapter: FavoriteDoctorsAdapter
     private val viewModel: DoctorsViewModel by viewModels()
 
     override fun onCreateView(
@@ -38,7 +38,7 @@ class CategoryFragment : Fragment() {
         val category = args.category
         binding.txvTitle.text = category
 
-        doctorAdapter = DoctorsAdapter()
+        doctorAdapter = FavoriteDoctorsAdapter()
         setDoctorRecyclerView()
         observeLoading()
         filterDoctorByCategory()

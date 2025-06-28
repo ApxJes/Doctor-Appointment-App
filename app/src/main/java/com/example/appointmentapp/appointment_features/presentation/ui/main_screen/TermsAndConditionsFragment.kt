@@ -27,6 +27,10 @@ class TermsAndConditionsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     override fun onDestroyView() {

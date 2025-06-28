@@ -43,17 +43,6 @@ class EditProfileFragment : Fragment() {
             }
         }
 
-    override fun onResume() {
-        super.onResume()
-        val genderOptions = listOf("Male", "Female", "Other")
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            genderOptions
-        )
-        binding.edtGender.setAdapter(adapter)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -63,8 +52,22 @@ class EditProfileFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val genderOptions = listOf("Male", "Female", "Other")
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            genderOptions
+        )
+        binding.edtGender.setAdapter(adapter)
+
+        binding.edtGender.setOnTouchListener { _, _ ->
+            binding.edtGender.showDropDown()
+            false
+        }
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
@@ -111,7 +114,13 @@ class EditProfileFragment : Fragment() {
                 if (document.exists()) {
                     binding.edtNickName.setText(document.getString("nickname").orEmpty())
                     binding.edtBirthDate.setText(document.getString("dateOfBirth").orEmpty())
-                    binding.edtGender.setText(document.getString("gender").orEmpty())
+                    val gender = document.getString("gender") ?: ""
+                    if (gender in listOf("Male", "Female", "Other")) {
+                        binding.edtGender.setText(gender, false)
+                    } else {
+                        binding.edtGender.setText("", false)
+                    }
+
                 }
             }
             .addOnFailureListener {

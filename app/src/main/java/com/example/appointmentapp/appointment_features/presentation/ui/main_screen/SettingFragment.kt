@@ -68,6 +68,9 @@ class SettingFragment : Fragment() {
             }
             .setNegativeButton("Cancel", null)
             .show()
+            .window?.setBackgroundDrawableResource(R.drawable.custom_bg)
+
+
     }
 
     private fun handlePasswordChange(oldPassword: String, newPassword: String) {

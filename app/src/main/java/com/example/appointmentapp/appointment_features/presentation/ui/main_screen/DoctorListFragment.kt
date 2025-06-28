@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
-import com.example.appointmentapp.appointment_features.presentation.adapter.DoctorsAdapter
+import com.example.appointmentapp.appointment_features.presentation.adapter.FavoriteDoctorsAdapter
 import com.example.appointmentapp.appointment_features.presentation.viewModel.DoctorsViewModel
 import com.example.appointmentapp.databinding.FragmentDoctorListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +29,7 @@ class DoctorListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val doctorViewModel: DoctorsViewModel by viewModels()
-    private lateinit var doctorAdapter: DoctorsAdapter
+    private lateinit var doctorAdapter: FavoriteDoctorsAdapter
 
     private var allDoctors: List<DoctorsVo> = emptyList()
     private var selectedButton: AppCompatButton? = null
@@ -57,7 +57,7 @@ class DoctorListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        doctorAdapter = DoctorsAdapter().apply {
+        doctorAdapter = FavoriteDoctorsAdapter().apply {
             setOnClickListener { doctor -> navigateToDoctorDetails(doctor) }
         }
         binding.rcvDoctors.apply {

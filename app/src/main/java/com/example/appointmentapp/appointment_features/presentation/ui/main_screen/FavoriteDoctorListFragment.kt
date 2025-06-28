@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appointmentapp.appointment_features.domain.model.DoctorsVo
-import com.example.appointmentapp.appointment_features.presentation.adapter.DoctorsAdapter
+import com.example.appointmentapp.appointment_features.presentation.adapter.FavoriteDoctorsAdapter
 import com.example.appointmentapp.appointment_features.presentation.viewModel.LocallySaveDoctorsViewModel
 import com.example.appointmentapp.databinding.FragmentFavoriteDoctorListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +24,7 @@ class FavoriteDoctorListFragment : Fragment() {
     private var _binding: FragmentFavoriteDoctorListBinding? = null
     private val binding get() = _binding!!
     private val viewModel: LocallySaveDoctorsViewModel by viewModels()
-    private lateinit var doctorAdapter: DoctorsAdapter
+    private lateinit var doctorAdapter: FavoriteDoctorsAdapter
 
     private var listener: OnDoctorClickListener? = null
 
@@ -53,7 +53,7 @@ class FavoriteDoctorListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        doctorAdapter = DoctorsAdapter()
+        doctorAdapter = FavoriteDoctorsAdapter()
 
         doctorAdapter.setOnClickListener { doctor ->
             listener?.onDoctorClicked(doctor)
@@ -69,9 +69,11 @@ class FavoriteDoctorListFragment : Fragment() {
                 viewModel.state.collectLatest { saveDoctors ->
 
                     if(saveDoctors.isEmpty()) {
-                        binding.rcvDoctorList.visibility = View.GONE
+                        binding.rcvDoctorList.visibility = View.INVISIBLE
                         binding.emptyLayout.visibility = View.VISIBLE
                     } else {
+                        binding.rcvDoctorList.visibility = View.VISIBLE
+                        binding.emptyLayout.visibility = View.GONE
                         doctorAdapter.differ.submitList(saveDoctors)
                     }
                 }

@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.appointmentapp.appointment_features.presentation.ui.main_screen.FavoriteDoctorListFragment
 import com.example.appointmentapp.appointment_features.presentation.ui.main_screen.ScheduleListFragment
 
-class FragmentPagerAdapter(
+class ScheduleAndDoctorAdapter(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ): FragmentStateAdapter(fragmentManager, lifecycle) {

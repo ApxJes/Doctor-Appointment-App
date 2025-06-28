@@ -226,8 +226,12 @@
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/favoriteHospitalFragment"
-        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.FavoriteHospitalFragment"
+        android:name="com.example.appointmentapp.appointment_features.presentation.ui.main_screen.FavoriteFragment"
         android:label="fragment_favorite_hospital"
-        tools:layout="@layout/fragment_favorite_hospital" />
+        tools:layout="@layout/fragment_favorite_hospital" >
+        <action
+            android:id="@+id/action_favoriteHospitalFragment_to_doctorDetailsFragment"
+            app:destination="@id/doctorDetailsFragment" />
+    </fragment>
 
 </navigation>

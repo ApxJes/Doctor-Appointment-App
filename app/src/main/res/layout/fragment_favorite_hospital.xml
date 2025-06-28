@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".appointment_features.presentation.ui.main_screen.FavoriteHospitalFragment">
+    tools:context=".appointment_features.presentation.ui.main_screen.FavoriteFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"

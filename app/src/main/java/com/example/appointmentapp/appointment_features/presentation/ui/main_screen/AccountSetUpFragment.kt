@@ -67,6 +67,7 @@ class AccountSetUpFragment : Fragment() {
             genderOptions
         )
         binding.edtGender.setAdapter(adapter)
+        binding.edtGender.showDropDown()
     }
 
     override fun onCreateView(
