@@ -19,8 +19,6 @@ import kotlinx.coroutines.flow.collectLatest
 class FavoriteHospitalFragment : Fragment() {
     private var _binding: FragmentFavoriteHospitalBinding? = null
     private val binding get() = _binding!!
-    private lateinit var hospitalsAdapter: HospitalsAdapter
-    private val locallySaveHospitalsViewModel: LocallySaveHospitalsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,42 +31,7 @@ class FavoriteHospitalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hospitalsAdapter = HospitalsAdapter(
-            onSaveClick = {
-                locallySaveHospitalsViewModel.toggleHospitalSave(it)
-            },
-            isHospitalSaved = {
-                locallySaveHospitalsViewModel.isHospitalSaved(it)
-            }
-        )
-        setUpFavoriteHospitalsRecyclerView()
-        setUpHospitalObserverFromLocal()
 
-        binding.btnBack.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-        }
-    }
-
-    private fun setUpFavoriteHospitalsRecyclerView() {
-        binding.rcvFavoriteHospital.apply {
-            adapter = hospitalsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-    }
-
-    private fun setUpHospitalObserverFromLocal() {
-        lifecycleScope.launchWhenStarted {
-            locallySaveHospitalsViewModel.state.collectLatest { hospitalList ->
-                if (hospitalList.isEmpty()) {
-                    binding.emptyLayout.visibility = View.VISIBLE
-                    binding.rcvFavoriteHospital.visibility = View.INVISIBLE
-                } else {
-                    binding.emptyLayout.visibility = View.GONE
-                    binding.rcvFavoriteHospital.visibility = View.VISIBLE
-                    hospitalsAdapter.differ.submitList(hospitalList)
-                }
-            }
-        }
     }
 
 

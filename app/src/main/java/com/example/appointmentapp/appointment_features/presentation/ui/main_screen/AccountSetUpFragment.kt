@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -203,6 +205,7 @@ class AccountSetUpFragment : Fragment() {
 
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
         progressBar.visibility = View.VISIBLE

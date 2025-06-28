@@ -27,32 +27,6 @@ class TermsAndConditionsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.cbAcceptTerms.setOnCheckedChangeListener { _, isChecked ->
-            binding.btnAccept.isEnabled = isChecked
-
-            if (isChecked) {
-                binding.btnAccept.text = "Accepted"
-                binding.btnAccept.setBackgroundResource(R.drawable.on_boarding_button)
-                binding.btnAccept.setTextColor(
-                    ContextCompat.getColor(requireContext(), R.color.white)
-                )
-            } else {
-                binding.btnAccept.text = "Accept"
-                binding.btnAccept.setBackgroundResource(R.drawable.disable_button)
-                binding.btnAccept.setTextColor(
-                    ContextCompat.getColor(requireContext(), R.color.black)
-                )
-            }
-        }
-
-        binding.btnAccept.setOnClickListener {
-            Toast.makeText(requireContext(), "Thank you for accepting the terms!", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.btnBack.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-        }
     }
 
     override fun onDestroyView() {

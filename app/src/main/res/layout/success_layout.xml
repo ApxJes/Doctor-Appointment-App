@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
     android:layout_height="340dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="30dp"
-    android:elevation="8dp"
     android:layout_margin="10dp"
-    android:padding="8dp">
+    android:elevation="8dp"
+    app:cardCornerRadius="30dp"
+    app:cardBackgroundColor="@color/white"
+    android:clipToOutline="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:padding="8dp"
+        android:gravity="center_horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ture"
-            android:layout_gravity="center|top"
             android:layout_marginTop="20dp"/>
 
         <TextView
@@ -28,7 +29,6 @@
             android:textSize="18sp"
             android:textColor="@color/black"
             android:fontFamily="@font/switzer_bold"
-            android:layout_gravity="center"
             android:layout_marginTop="8dp"/>
 
         <TextView
@@ -41,8 +41,6 @@
             android:text="@string/congratulation_message"
             android:textAlignment="center"
             android:textColor="@android:color/black"/>
-
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

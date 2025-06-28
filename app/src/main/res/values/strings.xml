@@ -16,42 +16,45 @@
         <item>Female</item>
     </string-array>
 
-    <string name="terms_and_conditions_text"><![CDATA[
-
-1. Introduction\n
+    <string name="introduction">
 Welcome to our Doctor Appointment app. By using this app, you agree to comply with and be bound by these terms and conditions. Please read them carefully.\n
+</string>
 
-2. User Responsibilities\n
-You agree to provide accurate, current, and complete information during registration and when using the services. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.\n
+    <string name="user_responsibilities">
+        You agree to provide accurate, current, and complete information during registration and when using the services. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.\n
+    </string>
 
-3. Appointment Booking\n
-All appointments booked through the app are subject to availability. We do not guarantee the availability of any particular doctor or appointment slot. You must follow the instructions and provide all necessary information to book, modify, or cancel appointments.\n
+    <string name="appointment_booking">
+        All appointments booked through the app are subject to availability. We do not guarantee the availability of any particular doctor or appointment slot. You must follow the instructions and provide all necessary information to book, modify, or cancel appointments.\n
+    </string>
 
-4. Privacy Policy\n
-Your privacy is important to us. We collect, store, and use your personal data in accordance with our Privacy Policy, which is part of these Terms. By using the app, you consent to such data practices.\n
+    <string name="privacy_policy">
+        Your privacy is important to us. We collect, store, and use your personal data in accordance with our Privacy Policy, which is part of these Terms. By using the app, you consent to such data practices.\n
+    </string>
 
-5. Payments and Fees\n
-Some services may require payment. All payments are handled securely through trusted payment gateways. The app does not store your payment information.\n
+    <string name="payment_and_fees">
+        Some services may require payment. All payments are handled securely through trusted payment gateways. The app does not store your payment information.\n
+    </string>
 
-6. Limitation of Liability\n
-The app and its services are provided "as is" without warranties of any kind. We do not guarantee that the app will be error-free, uninterrupted, or free of viruses or other harmful components. We are not liable for any damages arising from the use of the app or inability to use the app.\n
+    <string name="limitation_of_liability">
+        The app and its services are provided "as is" without warranties of any kind. We do not guarantee that the app will be error-free, uninterrupted, or free of viruses or other harmful components. We are not liable for any damages arising from the use of the app or inability to use the app.\n
+    </string>
 
-7. Intellectual Property\n
-All content, trademarks, and intellectual property displayed on the app are owned by or licensed to us. You may not use, reproduce, or distribute any content without our explicit permission.\n
+    <string name="intellectual_property">
+        All content, trademarks, and intellectual property displayed on the app are owned by or licensed to us. You may not use, reproduce, or distribute any content without our explicit permission.\n
+    </string>
 
-8. Termination\n
-We reserve the right to suspend or terminate your access to the app at any time without notice if you violate these terms.\n
+    <string name="governing_law">
+        These terms are governed by the laws of the jurisdiction in which our company is registered.\n
+    </string>
 
-9. Changes to Terms\n
-We may update these Terms and Conditions from time to time. Continued use of the app after changes indicates acceptance of the updated terms.\n
+    <string name="contact_information">
+        If you have any questions or concerns about these Terms, please contact our support team via the app or email.\n
+    </string>
 
-10. Governing Law\n
-These terms are governed by the laws of the jurisdiction in which our company is registered.\n
+    <string name="thanks_message">
+        Thank you for choosing our Doctor Appointment app. We are committed to providing you with a safe and reliable experience.
+    </string>
 
-11. Contact Information\n
-If you have any questions or concerns about these Terms, please contact our support team via the app or email.\n
-
-Thank you for choosing our Doctor Appointment app. We are committed to providing you with a safe and reliable experience.
-]]></string>
 
 </resources>

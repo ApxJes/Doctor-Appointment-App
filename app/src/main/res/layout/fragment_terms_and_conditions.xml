@@ -39,35 +39,178 @@
         android:layout_weight="1"
         android:layout_marginTop="15dp">
 
-        <TextView
-            android:id="@+id/tv_terms_content"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="4dp"
-            android:fontFamily="@font/inter"
-            android:text="@string/terms_and_conditions_text"
-            android:textColor="@color/textGray"
-            android:textSize="14sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Introduction"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/introduction"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/textGray"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. User Responsibilitie"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_responsibilities"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/textGray"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. Appointment Booking"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/appointment_booking"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/textGray"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4. Privacy Policy"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/textGray"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5. Payment And Fees"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/payment_and_fees"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/textGray"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6. Limitation Of Liability"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/limitation_of_liability"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/textGray"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7. Intellectual Property"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/intellectual_property"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/textGray"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8. Governing Law"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/governing_law"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/textGray"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9. Contact Information"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_information"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/textGray"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/thanks_message"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_semi_bold"
+                android:textColor="@color/textGray2"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"/>
+
+
+        </LinearLayout>
+
+
     </ScrollView>
-
-    <CheckBox
-        android:id="@+id/cb_accept_terms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I have read and accept the Terms and Conditions"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/textGray2"
-        android:textSize="16sp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_accept"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="Accept"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/disable_button"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:enabled="false" />
-
 </LinearLayout>

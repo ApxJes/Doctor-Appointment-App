@@ -88,5 +88,6 @@ dependencies {
     implementation (libs.google.firebase.storage.ktx)
 
     implementation ("com.airbnb.android:lottie:6.1.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.0")
 
 }

@@ -2,6 +2,8 @@ package com.example.appointmentapp.appointment_features.presentation.ui.main_scr
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -91,6 +93,7 @@ class ProfileFragment : Fragment() {
 
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
         val btnYesLogOut = dialogView.findViewById<Button>(R.id.btnConfirm)

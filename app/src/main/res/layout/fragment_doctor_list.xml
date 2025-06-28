@@ -89,8 +89,8 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="58dp"
+                    android:layout_height="37dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/category_bg"
                     android:padding="8dp"
@@ -101,7 +101,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDentistry"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/selected_bg"
                     android:ellipsize="end"
@@ -114,7 +114,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnCardiologist"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/selected_bg"
                     android:ellipsize="end"
@@ -127,7 +127,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnPulmonologist"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/selected_bg"
                     android:ellipsize="end"
@@ -140,7 +140,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnGeneral"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/selected_bg"
                     android:ellipsize="end"
@@ -153,7 +153,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnNeurology"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/selected_bg"
                     android:ellipsize="end"
@@ -166,7 +166,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnGastroenterology"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/selected_bg"
                     android:ellipsize="end"
@@ -179,7 +179,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnLaboratory"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/selected_bg"
                     android:ellipsize="end"
@@ -192,7 +192,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnVeccination"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/selected_bg"
                     android:ellipsize="end"
