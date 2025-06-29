@@ -49,7 +49,7 @@ class SplashScreenFragment : Fragment() {
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val isOnBoardingFinished = onBoardingFinished()
+            val isOnBoardingFinished = OnBoardingPreference.isOnboardingFinished(requireContext())
 
             if (!isOnBoardingFinished) {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_viewPagerFragment)
@@ -62,11 +62,6 @@ class SplashScreenFragment : Fragment() {
                 }
             }
         }, 2000)
-    }
-
-    private fun onBoardingFinished(): Boolean {
-        val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-        return sharedPref.getBoolean("isFinished", false)
     }
 
     override fun onDestroyView() {

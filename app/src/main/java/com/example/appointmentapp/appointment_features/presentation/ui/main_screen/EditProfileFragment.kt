@@ -118,12 +118,11 @@ class EditProfileFragment : Fragment() {
                     val gender = document.getString("gender") ?: ""
                     if (gender in listOf("Male", "Female", "Other")) {
                         binding.edtGender.setText(gender, false)
-                    } else {
-                        binding.edtGender.hint = "Gender"
-                        binding.edtGender.setHintTextColor(ActivityCompat.getColor(requireContext(),R.color.textPrimaryColor))
-                        binding.edtGender.setText("", false)
-                    }
 
+                    } else {
+                        binding.edtGender.setText("Gender")
+                        binding.edtGender.setHintTextColor(ActivityCompat.getColor(requireContext(),R.color.textPrimaryColor))
+                        binding.edtGender.setText("", false) }
                 }
             }
             .addOnFailureListener {

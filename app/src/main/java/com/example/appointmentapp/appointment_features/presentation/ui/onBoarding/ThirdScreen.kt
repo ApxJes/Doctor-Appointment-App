@@ -35,22 +35,15 @@ class ThirdScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnFinish.setOnClickListener {
-            onBoardingFinished()
+            OnBoardingPreference.setOnboardingFinished(requireContext(), true)
             findNavController().navigate(R.id.action_viewPagerFragment_to_singUpFragment)
         }
 
         binding.txvSkip.setOnClickListener {
+            OnBoardingPreference.setOnboardingFinished(requireContext(), true)
             val action = R.id.action_viewPagerFragment_to_singUpFragment
             findNavController().navigate(action)
         }
-    }
-
-    private fun onBoardingFinished() {
-        val sharePref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-        val editor = sharePref.edit()
-        editor.putBoolean("isFinished", true)
-        editor.apply()
-
     }
 
     override fun onDestroyView() {

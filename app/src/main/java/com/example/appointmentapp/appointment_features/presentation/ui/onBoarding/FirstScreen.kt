@@ -40,6 +40,7 @@ class FirstScreen : Fragment() {
         }
 
         binding.txvSkip.setOnClickListener {
+            OnBoardingPreference.setOnboardingFinished(requireContext(), true)
             val action = R.id.action_viewPagerFragment_to_singUpFragment
             findNavController().navigate(action)
         }

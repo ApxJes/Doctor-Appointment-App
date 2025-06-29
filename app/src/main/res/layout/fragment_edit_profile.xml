@@ -193,11 +193,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/genderInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         app:endIconMode="dropdown_menu"
@@ -207,8 +206,7 @@
         <AutoCompleteTextView
             android:id="@+id/edtGender"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/login_bg"
+            android:layout_height="45dp"
             android:clickable="true"
             android:cursorVisible="false"
             android:focusable="false"
@@ -216,6 +214,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:fontFamily="@font/inter"
+            android:layout_gravity="center"
             android:textColor="@color/textGray"
             android:textColorHint="@color/textGray"
             android:textSize="14sp" />

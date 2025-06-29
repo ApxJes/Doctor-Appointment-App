@@ -66,11 +66,10 @@ class SettingFragment : Fragment() {
                 val newPassword = newPass.text.toString()
                 handlePasswordChange(oldPassword, newPassword)
             }
+            .setCancelable(false)
             .setNegativeButton("Cancel", null)
             .show()
             .window?.setBackgroundDrawableResource(R.drawable.custom_bg)
-
-
     }
 
     private fun handlePasswordChange(oldPassword: String, newPassword: String) {
