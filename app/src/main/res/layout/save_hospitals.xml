@@ -2,28 +2,34 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="235dp"
-    android:layout_marginBottom="12dp"
-    android:backgroundTint="@color/white"
-    android:elevation="4dp"
-    app:cardCornerRadius="12dp">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="121dp">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imvHospital"
                 android:layout_width="match_parent"
-                android:layout_height="121dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/children_hospital_yangon" />
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/children_hospital_yangon"
+                app:shapeAppearanceOverlay="@style/RoundedImageShapeSmall" />
 
             <ImageButton
                 android:id="@+id/btnSave"
@@ -33,31 +39,31 @@
                 android:layout_margin="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/to_save" />
-
         </FrameLayout>
 
         <TextView
             android:id="@+id/txvHospitalName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ellipsize="end"
+            android:layout_marginTop="10dp"
+            android:text="Children Hospital Yangon"
+            android:textSize="16sp"
+            android:textColor="#1F2A37"
             android:fontFamily="@font/inter_bold"
             android:maxLines="1"
-            android:textColor="#4B5563"
-            android:textSize="16sp" />
+            android:ellipsize="end" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="6dp"
                 android:src="@drawable/location"
                 app:tint="#6B7280" />
 
@@ -66,25 +72,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ellipsize="end"
+                android:text="Dagon Township, Yangon"
+                android:textSize="14sp"
+                android:textColor="#6B7280"
                 android:fontFamily="@font/inter"
                 android:maxLines="1"
-                android:textColor="#6B7280"
-                android:textSize="14sp" />
-
+                android:ellipsize="end" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="6dp"
                 android:src="@drawable/rate1"
                 app:tint="#FEB052" />
 
@@ -92,15 +98,12 @@
                 android:id="@+id/txvRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_semi_bold"
-                android:maxLines="1"
-                android:text="5.0"
+                android:text="4.8"
+                android:textSize="14sp"
                 android:textColor="#6B7280"
-                android:textSize="14sp" />
-
+                android:fontFamily="@font/inter_semi_bold" />
         </LinearLayout>
 
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>
 

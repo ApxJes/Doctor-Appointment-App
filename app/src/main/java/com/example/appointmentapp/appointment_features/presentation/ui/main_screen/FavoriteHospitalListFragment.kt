@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.presentation.adapter.FavoriteHospitalsAdapter
 import com.example.appointmentapp.appointment_features.presentation.viewModel.LocallySaveHospitalsViewModel
-import com.example.appointmentapp.databinding.FragmentFavoriteHospitalBinding
 import com.example.appointmentapp.databinding.FragmentFavoriteHospitalListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

@@ -11,6 +11,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.location.LocationRequest
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -54,6 +55,17 @@ class HomeFragment : Fragment() {
     private val hospitalsViewModel: HospitalsViewModel by viewModels()
     private val locallySaveHospitalsViewModel: LocallySaveHospitalsViewModel by viewModels()
     private lateinit var imageBannerAdapter: ImageBannerAdapter
+
+    private val imageList = listOf(
+        R.drawable.doctor_image_banner,
+        R.drawable.appointment11,
+        R.drawable.appointment2,
+        R.drawable.appointment3
+    )
+
+    private var currentPage = 0
+    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var runnable: Runnable
 
     private val locationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -250,16 +262,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpImageBanner() {
-        val imageList = listOf(
-            R.drawable.doctor_image_banner,
-            R.drawable.appointment11,
-            R.drawable.appointment2,
-            R.drawable.appointment3
-        )
 
         imageBannerAdapter = ImageBannerAdapter(this, imageList)
         binding.ViewPager2.adapter = imageBannerAdapter
         binding.dotsIndicator.attachTo(binding.ViewPager2)
+
+        runnable = object: Runnable {
+            override fun run() {
+                if(currentPage == imageList.size) currentPage = 0
+                binding.ViewPager2.setCurrentItem(currentPage++, true)
+                handler.postDelayed(this, 3000)
+            }
+        }
+
+        handler.postDelayed(runnable, 3000)
     }
 
     override fun onResume() {
@@ -273,8 +289,9 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
         _binding = null
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
+        handler.removeCallbacks(runnable)
     }
 }
 

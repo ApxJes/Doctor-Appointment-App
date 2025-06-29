@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.appointmentapp.R
 import com.example.appointmentapp.databinding.FragmentEditProfileBinding
@@ -113,11 +114,13 @@ class EditProfileFragment : Fragment() {
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     binding.edtNickName.setText(document.getString("nickname").orEmpty())
-                    binding.edtBirthDate.setText(document.getString("dateOfBirth").orEmpty())
+                    binding.edtBirthDate.text = document.getString("dateOfBirth").orEmpty()
                     val gender = document.getString("gender") ?: ""
                     if (gender in listOf("Male", "Female", "Other")) {
                         binding.edtGender.setText(gender, false)
                     } else {
+                        binding.edtGender.hint = "Gender"
+                        binding.edtGender.setHintTextColor(ActivityCompat.getColor(requireContext(),R.color.textPrimaryColor))
                         binding.edtGender.setText("", false)
                     }
 

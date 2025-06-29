@@ -201,6 +201,7 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         app:endIconMode="dropdown_menu"
+        android:hint="Gender"
         app:layout_constraintTop_toBottomOf="@id/BirthInputLayout">
 
         <AutoCompleteTextView
@@ -214,7 +215,6 @@
             android:inputType="none"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:text="Gender"
             android:fontFamily="@font/inter"
             android:textColor="@color/textGray"
             android:textColorHint="@color/textGray"

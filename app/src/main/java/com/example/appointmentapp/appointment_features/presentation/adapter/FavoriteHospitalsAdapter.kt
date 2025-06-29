@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.appointmentapp.R
 import com.example.appointmentapp.appointment_features.domain.model.HospitalsVo
-import com.example.appointmentapp.databinding.HospitalLayoutBinding
 import com.example.appointmentapp.databinding.SaveHospitalsBinding
 
 
@@ -59,7 +58,7 @@ class FavoriteHospitalsAdapter(
 
             val isSaved = isHospitalSaved(hospital)
             btnSave.setImageResource(
-                if (isSaved) R.drawable.saved else R.drawable.to_save
+                if (isSaved) R.drawable.red_heart_icon else R.drawable.to_save
             )
 
             btnSave.setOnClickListener {

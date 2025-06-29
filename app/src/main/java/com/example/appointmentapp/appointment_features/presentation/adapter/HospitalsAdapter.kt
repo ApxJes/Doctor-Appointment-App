@@ -58,7 +58,7 @@ class HospitalsAdapter(
 
             val isSaved = isHospitalSaved(hospital)
             btnSave.setImageResource(
-                if (isSaved) R.drawable.saved else R.drawable.to_save
+                if (isSaved) R.drawable.red_heart_icon else R.drawable.save
             )
 
             btnSave.setOnClickListener {

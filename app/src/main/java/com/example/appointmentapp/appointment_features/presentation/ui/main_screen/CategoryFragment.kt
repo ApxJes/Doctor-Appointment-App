@@ -14,6 +14,7 @@ import com.example.appointmentapp.appointment_features.presentation.viewModel.Do
 import com.example.appointmentapp.databinding.FragmentCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -50,21 +51,18 @@ class CategoryFragment : Fragment() {
 
     private fun filterDoctorByCategory() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.doctors.collectLatest { doctorList ->
+            combine(viewModel.doctors, viewModel.isLoading) { doctorList, isLoading ->
                 val filterList = doctorList.filter {
-                    it.specialized!!.contains(args.category)
+                    it.specialized?.contains(args.category) ?: false
                 }
-
+                Triple(filterList, isLoading, doctorList)
+            }.collectLatest { (filterList, isLoading, _) ->
                 doctorAdapter.differ.submitList(filterList)
 
-                if (filterList.isEmpty() && viewModel.isLoading.value == false) {
-                    binding.txvEmpty.visibility = View.VISIBLE
-                    binding.rcvCategory.visibility = View.GONE
+                val showEmpty = filterList.isEmpty() && !isLoading
 
-                } else {
-                    binding.txvEmpty.visibility = View.GONE
-                    binding.rcvCategory.visibility = View.VISIBLE
-                }
+                binding.emptyLayout.visibility = if (showEmpty) View.VISIBLE else View.GONE
+                binding.rcvCategory.visibility = if (showEmpty) View.GONE else View.VISIBLE
             }
         }
     }
