@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Appointment App</string>
+    <string name="app_name">HealthPal</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="doc1">Connect with Specialized Doctors Online for\nConvenient and Comprehensive Medical\nConsultations.</string>
@@ -15,6 +15,10 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <style name="default_web_client_id">
+        "621884972092-tep9227o6v5gtal9aha8miflhl9k2bm2.apps.googleusercontent.com"
+    </style>
 
     <string name="introduction">
 Welcome to our Doctor Appointment app. By using this app, you agree to comply with and be bound by these terms and conditions. Please read them carefully.\n

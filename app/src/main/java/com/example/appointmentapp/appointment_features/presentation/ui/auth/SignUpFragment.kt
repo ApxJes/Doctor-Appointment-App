@@ -1,5 +1,6 @@
 package com.example.appointmentapp.appointment_features.presentation.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -7,10 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.appointmentapp.R
 import com.example.appointmentapp.databinding.FragmentSingUpBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.UserProfileChangeRequest
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -24,6 +33,8 @@ class SignUpFragment : Fragment() {
     private var _binding: FragmentSingUpBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignClient: GoogleSignInClient
+    private lateinit var googleSignInLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,12 +49,24 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
 
+        googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account.idToken!!)
+            }catch (e: ApiException) {
+                Toast.makeText(requireContext(), "Google Sign-In failed: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {}
         })
 
         setUpOnClickListener()
         restoreButtonState()
+        signUpWithGoogle()
     }
 
     private fun setUpOnClickListener() {
@@ -53,6 +76,10 @@ class SignUpFragment : Fragment() {
 
         binding.txvSignIn.setOnClickListener {
             findNavController().navigate(SignUpFragmentDirections.actionSingUpFragmentToLoginFragment())
+        }
+
+        binding.btnLoginWithGoogle.setOnClickListener {
+            googleSignInLauncher.launch(googleSignClient.signInIntent)
         }
     }
 
@@ -146,6 +173,33 @@ class SignUpFragment : Fragment() {
         binding.btnProgressBar.visibility = View.GONE
         binding.btnCreateAccount.text = "Create Account"
         binding.btnCreateAccount.isEnabled = true
+    }
+
+    private fun signUpWithGoogle() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("621884972092-tep9227o6v5gtal9aha8miflhl9k2bm2.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        googleSignClient = GoogleSignIn.getClient(requireContext(), gso)
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        binding.btnProgressBar.visibility = View.VISIBLE
+        binding.btnCreateAccount.text = ""
+        binding.btnCreateAccount.isEnabled = false
+
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                restoreButtonState()
+                if(task.isSuccessful) {
+                    val user = auth.currentUser
+                    Toast.makeText(requireContext(), "Welcome, ${user?.displayName}", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(SignUpFragmentDirections.actionSingUpFragmentToAccountSetUpFragment2())
+                }else {
+                    Toast.makeText(requireContext(), "Firebase authentication failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     override fun onDestroyView() {

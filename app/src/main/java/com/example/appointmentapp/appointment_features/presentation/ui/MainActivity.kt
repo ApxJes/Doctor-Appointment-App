@@ -2,6 +2,7 @@ package com.example.appointmentapp.appointment_features.presentation.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -46,6 +47,16 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNav.visibility =
                 if (destination.id in fragmentSetToShowBottomNav) View.VISIBLE else View.GONE
         }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(navController.currentDestination?.id == R.id.homeFragment){
+                    finish()
+                } else{
+                    navController.popBackStack()
+                }
+            }
+        })
     }
 
     override fun onDestroy() {

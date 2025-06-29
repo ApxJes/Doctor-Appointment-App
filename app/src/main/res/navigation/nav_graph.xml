@@ -206,6 +206,9 @@
         <argument
             android:name="category"
             app:argType="string" />
+        <action
+            android:id="@+id/action_categoryFragment_to_doctorDetailsFragment"
+            app:destination="@id/doctorDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/helpAndSupportFragment"

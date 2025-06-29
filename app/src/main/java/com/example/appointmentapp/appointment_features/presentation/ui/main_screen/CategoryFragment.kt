@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appointmentapp.appointment_features.presentation.adapter.FavoriteDoctorsAdapter
@@ -46,6 +47,11 @@ class CategoryFragment : Fragment() {
 
         binding.btnBackPress.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        doctorAdapter.setOnClickListener {
+            val action = CategoryFragmentDirections.actionCategoryFragmentToDoctorDetailsFragment(it)
+            findNavController().navigate(action)
         }
     }
 
